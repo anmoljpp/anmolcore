@@ -8,8 +8,7 @@ from contextlib import suppress
 from datetime import timedelta
 from functools import partial
 import logging
-from typing import Generic
-from typing_extensions import TypeVar
+from typing import (
     Any,
     Final,
     Generic,

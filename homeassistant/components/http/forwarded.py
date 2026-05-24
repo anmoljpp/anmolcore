@@ -75,15 +75,6 @@ def async_setup_forwarded(
         request: Request, handler: Callable[[Request], Awaitable[StreamResponse]]
     ) -> StreamResponse:
         """Process forwarded data by a reverse proxy."""
-        # Skip requests from Remote UI
-        try:
-            from hass_nabucasa import remote  # noqa: PLC0415
-
-            if remote.is_cloud_request.get():
-                return await handler(request)
-        except ImportError:
-            pass
-
         # Handle X-Forwarded-For
         forwarded_for_headers: list[str] = request.headers.getall(X_FORWARDED_FOR, [])
         if not forwarded_for_headers:
