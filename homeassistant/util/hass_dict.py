@@ -6,6 +6,7 @@ Custom for type checking. See stub file.
 
 from __future__ import annotations
 
+
 class HassKey(str):
     """Generic Hass key type.
 
@@ -13,6 +14,10 @@ class HassKey(str):
     """
 
     __slots__ = ()
+
+    def __class_getitem__(cls, params: object) -> type:
+        """Allow subscript for type checking."""
+        return cls
 
 
 class HassEntryKey(str):
@@ -22,6 +27,10 @@ class HassEntryKey(str):
     """
 
     __slots__ = ()
+
+    def __class_getitem__(cls, params: object) -> type:
+        """Allow subscript for type checking."""
+        return cls
 
 
 HassDict = dict

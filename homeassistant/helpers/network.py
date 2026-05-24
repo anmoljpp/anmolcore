@@ -8,7 +8,6 @@ from ipaddress import ip_address
 import logging
 
 from aiohttp import hdrs
-from hass_nabucasa import remote
 import yarl
 
 from homeassistant.core import HomeAssistant
@@ -344,4 +343,9 @@ def is_cloud_connection(hass: HomeAssistant) -> bool:
     if "cloud" not in hass.config.components:
         return False
 
-    return remote.is_cloud_request.get()
+    try:
+        from hass_nabucasa import remote  # noqa: PLC0415
+
+        return remote.is_cloud_request.get()
+    except ImportError:
+        return False

@@ -42,8 +42,8 @@ REDACT_KEYS = {
     "auth_token",
 }
 
-MessageHandler: TypeAlias = Callable[[HomeAssistant, ActiveConnection, dict[str, Any]], None]
-BinaryHandler: TypeAlias = Callable[[HomeAssistant, ActiveConnection, bytes], None]
+MessageHandler: TypeAlias = Callable[[HomeAssistant, "ActiveConnection", dict[str, Any]], None]
+BinaryHandler: TypeAlias = Callable[[HomeAssistant, "ActiveConnection", bytes], None]
 
 
 class ActiveConnection:

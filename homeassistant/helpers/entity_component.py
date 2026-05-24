@@ -7,7 +7,7 @@ from collections.abc import Callable, Coroutine, Iterable, Mapping
 from datetime import timedelta
 import logging
 from types import ModuleType
-from typing import Any
+from typing import Any, Generic
 
 from homeassistant import config as conf_util
 from homeassistant.config_entries import ConfigEntry
@@ -60,6 +60,10 @@ async def async_update_entity(hass: HomeAssistant, entity_id: str) -> None:
         return
 
     await entity_obj.async_update_ha_state(True)
+
+from typing_extensions import TypeVar as _TypeVar
+_EntityT = _TypeVar("_EntityT", bound=entity.Entity, default=entity.Entity)
+
 
 
 class EntityComponent(Generic[_EntityT]):

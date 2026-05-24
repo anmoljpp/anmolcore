@@ -7,7 +7,7 @@ from copy import deepcopy
 from enum import StrEnum
 from functools import cache
 import importlib
-from typing import Any, Literal, Required, TypedDict, cast
+from typing import Any, Literal, Required, TypedDict, cast, Generic, TypeVar
 from uuid import UUID
 
 import voluptuous as vol
@@ -49,6 +49,9 @@ def validate_selector(config: Any) -> dict:
     """Validate a selector."""
     selector_type, selector_class = _get_selector_type_and_class(config)
     return {selector_type: selector_class.CONFIG_SCHEMA(config[selector_type])}
+
+_T = TypeVar("_T")
+
 
 
 class Selector(Generic[_T]):

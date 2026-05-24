@@ -55,7 +55,10 @@ from .const import (  # noqa: F401
     STORAGE_DASHBOARD_CREATE_FIELDS,
     STORAGE_DASHBOARD_UPDATE_FIELDS,
 )
-from .system_health import system_health_info  # noqa: F401
+try:
+    from .system_health import system_health_info  # noqa: F401
+except ImportError:
+    pass
 
 _LOGGER = logging.getLogger(__name__)
 

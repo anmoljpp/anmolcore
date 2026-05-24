@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any
+from typing import TYPE_CHECKING, Any, Generic, TypeVar
 
 from lru import LRU
 
@@ -10,6 +10,9 @@ from homeassistant.util.event_type import EventType
 
 if TYPE_CHECKING:
     from ..core import Recorder
+
+_DataT = TypeVar("_DataT")
+
 
 
 class BaseTableManager(Generic[_DataT]):

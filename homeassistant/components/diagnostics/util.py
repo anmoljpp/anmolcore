@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from collections.abc import Iterable, Mapping
-from typing import Any, cast, overload
+from typing import Any, cast, overload, TypeVar
 
 import attr
 
@@ -11,6 +11,8 @@ from homeassistant.core import callback
 from homeassistant.helpers.entity_registry import RegistryEntry
 
 from .const import REDACTED
+
+_T = TypeVar("_T")
 
 
 @overload

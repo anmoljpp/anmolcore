@@ -25,7 +25,7 @@ from .const import DOMAIN
 
 PLATFORMS = [Platform.MEDIA_PLAYER]
 
-CastConfigEntry: TypeAlias = ConfigEntry[CastRuntimeData]
+CastConfigEntry: TypeAlias = ConfigEntry["CastRuntimeData"]
 
 
 @dataclass

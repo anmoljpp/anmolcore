@@ -11,7 +11,7 @@ from json import JSONDecodeError, JSONEncoder
 import logging
 import os
 from pathlib import Path
-from typing import Any
+from typing import Any, Generic, TypeVar
 
 from propcache.api import cached_property
 
@@ -222,6 +222,9 @@ class _StoreManager:
         """Initialize the cache."""
         if self._storage_path.exists():
             self._files = set(os.listdir(self._storage_path))
+
+_T = TypeVar("_T", bound=Mapping[str, Any] | Sequence[Any])
+
 
 
 class Store(Generic[_T]):

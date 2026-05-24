@@ -32,7 +32,7 @@ from .const import (
 )
 from .util import get_device_info
 
-TuyaConfigEntry: TypeAlias = ConfigEntry[DeviceListener]
+TuyaConfigEntry: TypeAlias = ConfigEntry["DeviceListener"]
 
 
 class DeviceListener(SharingDeviceListener):

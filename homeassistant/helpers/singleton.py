@@ -6,13 +6,17 @@ import asyncio
 from collections.abc import Callable, Coroutine
 import functools
 import inspect
-from typing import Any, Literal, assert_type, cast, overload
+from typing import Any, Literal, TypeAlias, TypeVar, assert_type, cast, overload
 
 from homeassistant.core import HomeAssistant
 from homeassistant.util.hass_dict import HassKey
 
-type _FuncType[_T] = Callable[[HomeAssistant], _T]
-type _Coro[_T] = Coroutine[Any, Any, _T]
+_T = TypeVar("_T")
+_U = TypeVar("_U")
+_S = TypeVar("_S")
+
+_FuncType: TypeAlias = "Callable[[HomeAssistant], _T]"
+_Coro: TypeAlias = "Coroutine[Any, Any, _T]"
 
 
 @overload

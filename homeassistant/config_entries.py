@@ -269,7 +269,7 @@ class OperationNotAllowed(ConfigError):
 
 
 UpdateListenerType: TypeAlias = Callable[
-    [HomeAssistant, ConfigEntry], Coroutine[Any, Any, None]
+    [HomeAssistant, "ConfigEntry"], Coroutine[Any, Any, None]
 ]
 
 STATE_KEYS = {

@@ -3,12 +3,14 @@
 from __future__ import annotations
 
 from collections.abc import Callable, Iterable, Mapping
-from typing import Any, cast, overload
+from typing import Any, cast, overload, TypeVar
 
 from homeassistant.core import callback
 
 REDACTED = "**REDACTED**"
 
+
+_T = TypeVar("_T")
 
 def partial_redact(
     x: str | Any, unmasked_prefix: int = 4, unmasked_suffix: int = 4

@@ -14,12 +14,12 @@ _SENTINEL = object()
 _LOGGER = logging.getLogger(__name__)
 
 JsonValueType: TypeAlias = (
-    dict[str, JsonValueType] | list[JsonValueType] | str | int | float | bool | None
+    dict[str, Any] | list[Any] | str | int | float | bool | None
 )
 """Any data that can be returned by the standard JSON deserializing process."""
-JsonArrayType: TypeAlias = list[JsonValueType]
+JsonArrayType: TypeAlias = list[Any]
 """List that can be returned by the standard JSON deserializing process."""
-JsonObjectType: TypeAlias = dict[str, JsonValueType]
+JsonObjectType: TypeAlias = dict[str, Any]
 """Dictionary that can be returned by the standard JSON deserializing process."""
 
 JSON_ENCODE_EXCEPTIONS = (TypeError, ValueError)

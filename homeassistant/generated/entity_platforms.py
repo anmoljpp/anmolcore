@@ -11,6 +11,7 @@ from enum import StrEnum
 class EntityPlatforms(StrEnum):
     """Available entity platforms."""
 
+    AIR_QUALITY = "air_quality"
     ALARM_CONTROL_PANEL = "alarm_control_panel"
     BINARY_SENSOR = "binary_sensor"
     BUTTON = "button"
@@ -43,4 +44,5 @@ class EntityPlatforms(StrEnum):
     UPDATE = "update"
     VACUUM = "vacuum"
     VALVE = "valve"
+    WATER_HEATER = "water_heater"
     WEATHER = "weather"

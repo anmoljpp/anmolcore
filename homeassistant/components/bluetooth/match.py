@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from fnmatch import translate
 from functools import lru_cache
 import re
-from typing import TYPE_CHECKING, Final, TypedDict
+from typing import TYPE_CHECKING, Final, TypedDict, Generic, TypeVar
 
 from lru import LRU
 
@@ -155,6 +155,9 @@ class IntegrationMatcher:
                 name=name,
             )
         return matched_domains
+
+_T = TypeVar("_T")
+
 
 
 class BluetoothMatcherIndexBase(Generic[_T]):

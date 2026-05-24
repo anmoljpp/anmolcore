@@ -3,7 +3,10 @@
 from __future__ import annotations
 
 from collections import OrderedDict
-from typing import Any
+from typing import Any, TypeVar
+
+_KT = TypeVar("_KT")
+_VT = TypeVar("_VT")
 
 
 class LimitedSizeDict(OrderedDict[_KT, _VT]):

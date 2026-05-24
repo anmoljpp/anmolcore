@@ -17,7 +17,7 @@ CACHE_HEADER = f"public, max-age={CACHE_TIME}"
 CACHE_HEADERS: Mapping[str, str] = {CACHE_CONTROL: CACHE_HEADER}
 RESPONSE_CACHE: LRU[tuple[str, Path], tuple[Path, str]] = LRU(512)
 
-_GUESSER = CONTENT_TYPES.guess_file_type
+_GUESSER = getattr(CONTENT_TYPES, 'guess_file_type', None) or CONTENT_TYPES.guess_type
 
 
 class CachingStaticResource(StaticResource):

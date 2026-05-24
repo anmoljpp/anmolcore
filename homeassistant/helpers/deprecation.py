@@ -8,7 +8,12 @@ from enum import EnumType, IntEnum, IntFlag, StrEnum, _EnumDict
 import functools
 import inspect
 import logging
-from typing import Any, NamedTuple, cast
+from typing import Any, NamedTuple, ParamSpec, cast, Generic, TypeVar
+
+T = TypeVar("T")
+_T = TypeVar("_T")
+_P = ParamSpec("_P")
+_ObjectT = TypeVar("_ObjectT")
 
 
 def deprecated_substitute(
@@ -314,6 +319,9 @@ class DeprecatedAlias(NamedTuple):
     value: T
     replacement: str
     breaks_in_ha_version: str | None
+
+T = TypeVar("T")
+
 
 
 class DeferredDeprecatedAlias(Generic[T]):

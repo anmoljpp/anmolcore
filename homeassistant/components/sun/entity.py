@@ -31,7 +31,7 @@ from .const import (
     STATE_BELOW_HORIZON,
 )
 
-SunConfigEntry: TypeAlias = ConfigEntry[Sun]
+SunConfigEntry: TypeAlias = ConfigEntry["Sun"]
 
 _LOGGER = logging.getLogger(__name__)
 

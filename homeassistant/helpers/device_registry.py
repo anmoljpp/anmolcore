@@ -10,7 +10,7 @@ from enum import StrEnum
 from functools import lru_cache
 import logging
 import time
-from typing import TYPE_CHECKING, Any, Literal, TypedDict, Unpack, TypeAlias
+from typing import TYPE_CHECKING, Any, Literal, TypedDict, Unpack, TypeAlias, TypeVar
 
 import attr
 from yarl import URL
@@ -682,6 +682,9 @@ class DeviceRegistryStore(storage.Store[dict[str, list[dict[str, Any]]]]):
         if old_major_version > 2:
             raise NotImplementedError
         return old_data
+
+_EntryTypeT = TypeVar("_EntryTypeT")
+
 
 
 class DeviceRegistryItems(BaseRegistryItems[_EntryTypeT]):

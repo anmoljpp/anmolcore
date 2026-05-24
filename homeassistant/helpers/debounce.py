@@ -6,9 +6,12 @@ import asyncio
 from collections.abc import AsyncGenerator, Callable
 from contextlib import asynccontextmanager
 from logging import Logger
-from typing import Any
+from typing import Any, Generic, TypeVar
 
 from homeassistant.core import HassJob, HomeAssistant, callback
+
+_R_co = TypeVar("_R_co")
+
 
 
 class Debouncer(Generic[_R_co]):

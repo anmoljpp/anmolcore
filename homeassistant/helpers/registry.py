@@ -5,7 +5,7 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 from collections import UserDict, defaultdict
 from collections.abc import Mapping, Sequence, ValuesView
-from typing import TYPE_CHECKING, Any, Literal, TypeAlias
+from typing import TYPE_CHECKING, Any, Generic, Literal, TypeAlias, TypeVar
 
 from homeassistant.core import CoreState, HomeAssistant, callback
 
@@ -16,6 +16,9 @@ SAVE_DELAY = 10
 SAVE_DELAY_LONG = 180
 
 RegistryIndexType: TypeAlias = defaultdict[str, dict[str, Literal[True]]]
+
+_DataT = TypeVar("_DataT")
+_StoreDataT = TypeVar("_StoreDataT")
 
 
 class BaseRegistryItems(UserDict[str, _DataT], ABC):
@@ -63,7 +66,7 @@ class BaseRegistryItems(UserDict[str, _DataT], ABC):
         super().__delitem__(key)
 
 
-class BaseRegistry(ABC):
+class BaseRegistry(ABC, Generic[_StoreDataT]):
     """Class to implement a registry."""
 
     hass: HomeAssistant

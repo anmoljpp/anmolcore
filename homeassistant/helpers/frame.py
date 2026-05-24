@@ -12,7 +12,9 @@ import logging
 import sys
 import threading
 from types import FrameType
-from typing import Any, cast
+from typing import Any, TypeVar, cast
+
+_CallableT = TypeVar("_CallableT", bound=Callable[..., Any])
 
 from propcache.api import cached_property
 

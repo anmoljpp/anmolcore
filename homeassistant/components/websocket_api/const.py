@@ -12,10 +12,10 @@ if TYPE_CHECKING:
 
 
 WebSocketCommandHandler: TypeAlias = Callable[
-    [HomeAssistant, ActiveConnection, dict[str, Any]], None
+    [HomeAssistant, "ActiveConnection", dict[str, Any]], None
 ]
 AsyncWebSocketCommandHandler: TypeAlias = Callable[
-    [HomeAssistant, ActiveConnection, dict[str, Any]], Awaitable[None]
+    [HomeAssistant, "ActiveConnection", dict[str, Any]], Awaitable[None]
 ]
 
 DOMAIN: Final = "websocket_api"

@@ -18,7 +18,7 @@ from homeassistant.helpers.trace import (
 from homeassistant.util import dt as dt_util, uuid as uuid_util
 from homeassistant.util.limited_size_dict import LimitedSizeDict
 
-TraceData: TypeAlias = dict[str, LimitedSizeDict[str, BaseTrace]]
+TraceData: TypeAlias = dict[str, LimitedSizeDict[str, "BaseTrace"]]
 
 
 class BaseTrace(abc.ABC):

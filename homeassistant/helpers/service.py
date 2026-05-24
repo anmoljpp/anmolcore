@@ -10,7 +10,7 @@ from functools import cache, partial
 import inspect
 import logging
 from types import ModuleType
-from typing import TYPE_CHECKING, Any, TypedDict, cast, override
+from typing import TYPE_CHECKING, Any, TypedDict, cast, override, Generic, TypeVar
 
 import voluptuous as vol
 
@@ -1107,6 +1107,9 @@ def verify_domain_control(
         return check_permissions
 
     return decorator
+
+_T = TypeVar("_T")
+
 
 
 class ReloadServiceHelper(Generic[_T]):

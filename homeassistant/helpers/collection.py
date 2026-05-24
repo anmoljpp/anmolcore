@@ -11,7 +11,7 @@ from hashlib import md5
 from itertools import groupby
 import logging
 from operator import attrgetter
-from typing import Any, TypedDict, TypeAlias
+from typing import Any, TypedDict, TypeAlias, Generic, TypeVar
 
 import voluptuous as vol
 from voluptuous.humanize import humanize_error
@@ -125,6 +125,10 @@ class CollectionEntity(Entity):
     async def async_update_config(self, config: ConfigType) -> None:
         """Handle updated configuration."""
 
+_ItemT = TypeVar("_ItemT")
+_StoreT = TypeVar("_StoreT")
+
+
 
 class ObservableCollection(Generic[_ItemT]):
     """Base collection type that can be observed."""
@@ -233,7 +237,7 @@ class SerializedStorageCollection(TypedDict):
     items: list[dict[str, Any]]
 
 
-class StorageCollection(ObservableCollection[_ItemT]):
+class StorageCollection(ObservableCollection[_ItemT], Generic[_ItemT, _StoreT]):
     """Offer a CRUD interface on top of JSON storage."""
 
     def __init__(
@@ -441,6 +445,9 @@ class IDLessCollection(YamlCollection):
 
 _GROUP_BY_KEY = attrgetter("change_type")
 
+_EntityT = TypeVar("_EntityT")
+
+
 
 @dataclass(slots=True, frozen=True)
 class _CollectionLifeCycle(Generic[_EntityT]):
@@ -531,6 +538,9 @@ def sync_entity_lifecycle(
     _CollectionLifeCycle(
         domain, platform, entity_component, collection, entity_class, ent_reg, {}
     ).async_setup()
+
+_StorageCollectionT = TypeVar("_StorageCollectionT")
+
 
 
 class StorageCollectionWebsocket(Generic[_StorageCollectionT]):

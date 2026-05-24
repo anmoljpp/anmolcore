@@ -16,3 +16,7 @@ class EventType(str):
     """
 
     __slots__ = ()
+
+    def __class_getitem__(cls, params: object) -> type:
+        """Allow subscript for type checking."""
+        return cls

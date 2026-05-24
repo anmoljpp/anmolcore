@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from homeassistant.core import CALLBACK_TYPE, HomeAssistant, callback
 from homeassistant.helpers.update_coordinator import (
@@ -88,6 +88,9 @@ class PassiveBluetoothDataUpdateCoordinator(
         """Handle a Bluetooth event."""
         self._available = True
         self.async_update_listeners()
+
+_PassiveBluetoothDataUpdateCoordinatorT = TypeVar("_PassiveBluetoothDataUpdateCoordinatorT")
+
 
 
 class PassiveBluetoothCoordinatorEntity(BaseCoordinatorEntity[_PassiveBluetoothDataUpdateCoordinatorT]):

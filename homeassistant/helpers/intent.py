@@ -38,7 +38,7 @@ from .typing import VolSchemaType
 _LOGGER = logging.getLogger(__name__)
 _SlotsType: TypeAlias = dict[str, Any]
 _IntentSlotsType: TypeAlias = dict[
-    str | tuple[str, str], IntentSlotInfo | VolSchemaType | Callable[[Any], Any]
+    str | tuple[str, str], "IntentSlotInfo" | VolSchemaType | Callable[[Any], Any]
 ]
 
 INTENT_TURN_OFF = "HassTurnOff"
@@ -887,7 +887,7 @@ class IntentSlotInfo:
 
 def _convert_slot_info(
     key: str | tuple[str, str],
-    value: IntentSlotInfo | VolSchemaType | Callable[[Any], Any],
+    value: "IntentSlotInfo" | VolSchemaType | Callable[[Any], Any],
 ) -> tuple[str, IntentSlotInfo]:
     """Create an IntentSlotInfo from the various supported input arguments."""
     if isinstance(value, IntentSlotInfo):

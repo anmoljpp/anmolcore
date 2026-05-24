@@ -3,7 +3,10 @@
 from __future__ import annotations
 
 from copy import deepcopy
-from typing import Any, final
+from typing import Any, TypeVar, final
+
+_KT = TypeVar("_KT")
+_VT = TypeVar("_VT")
 
 
 def _readonly(*args: Any, **kwargs: Any) -> Any:

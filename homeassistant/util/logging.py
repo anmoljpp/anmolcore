@@ -11,7 +11,10 @@ import logging.handlers
 from queue import SimpleQueue
 import time
 import traceback
-from typing import Any, cast, overload, override
+from typing import Any, TypeVar, TypeVarTuple, cast, overload, override
+
+_T = TypeVar("_T")
+_Ts = TypeVarTuple("_Ts")
 
 from homeassistant.core import (
     HassJobType,

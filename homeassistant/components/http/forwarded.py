@@ -8,8 +8,6 @@ import logging
 
 from aiohttp.hdrs import X_FORWARDED_FOR, X_FORWARDED_HOST, X_FORWARDED_PROTO
 from aiohttp.web import Application, HTTPBadRequest, Request, StreamResponse, middleware
-from hass_nabucasa import remote
-
 from homeassistant.core import callback
 
 _LOGGER = logging.getLogger(__name__)
@@ -78,8 +76,13 @@ def async_setup_forwarded(
     ) -> StreamResponse:
         """Process forwarded data by a reverse proxy."""
         # Skip requests from Remote UI
-        if remote.is_cloud_request.get():
-            return await handler(request)
+        try:
+            from hass_nabucasa import remote  # noqa: PLC0415
+
+            if remote.is_cloud_request.get():
+                return await handler(request)
+        except ImportError:
+            pass
 
         # Handle X-Forwarded-For
         forwarded_for_headers: list[str] = request.headers.getall(X_FORWARDED_FOR, [])

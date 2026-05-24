@@ -34,6 +34,7 @@ from typing import (
     Final,
     Generic,
     NotRequired,
+    ParamSpec,
     Self,
     TypeAlias,
     TypedDict,
@@ -291,6 +292,10 @@ class HassJobType(enum.Enum):
     Coroutinefunction = 1
     Callback = 2
     Executor = 3
+
+
+_P = ParamSpec("_P")
+_R_co = TypeVar("_R_co", covariant=True)
 
 
 @final  # Final to allow direct checking of the type instead of using isinstance

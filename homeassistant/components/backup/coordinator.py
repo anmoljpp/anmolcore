@@ -19,7 +19,7 @@ from .manager import (
     ManagerStateEvent,
 )
 
-BackupConfigEntry: TypeAlias = ConfigEntry[BackupDataUpdateCoordinator]
+BackupConfigEntry: TypeAlias = ConfigEntry["BackupDataUpdateCoordinator"]
 
 
 @dataclass

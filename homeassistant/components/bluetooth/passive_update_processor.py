@@ -6,7 +6,7 @@ import dataclasses
 from datetime import timedelta
 from functools import cache
 import logging
-from typing import TYPE_CHECKING, Any, Self, TypedDict, cast
+from typing import TYPE_CHECKING, Any, Self, TypedDict, cast, Generic, TypeVar
 
 from habluetooth import BluetoothScanningMode
 
@@ -125,6 +125,9 @@ def serialize_entity_description(description: EntityDescription) -> dict[str, An
         for field in cached_fields(type(description))
         if (value := getattr(description, field.name)) != field.default
     }
+
+_T = TypeVar("_T")
+
 
 
 @dataclasses.dataclass(slots=True, frozen=False)

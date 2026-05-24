@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import TypeVar
+
 from dataclasses import dataclass, field
 from datetime import datetime
 from functools import lru_cache
@@ -29,6 +31,9 @@ class NormalizedNameBaseRegistryEntry:
 def normalize_name(name: str) -> str:
     """Normalize a name by removing whitespace and case folding."""
     return name.casefold().replace(" ", "")
+
+_VT = TypeVar("_VT")
+
 
 
 class NormalizedNameBaseRegistryItems(BaseRegistryItems[_VT]):
