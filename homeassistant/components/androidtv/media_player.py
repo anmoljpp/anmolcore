@@ -1,5 +1,7 @@
 """Support for functionality to interact with Android / Fire TV devices."""
 
+from __future__ import annotations
+
 from datetime import datetime, timedelta
 import hashlib
 import logging

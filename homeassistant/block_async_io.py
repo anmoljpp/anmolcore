@@ -1,5 +1,7 @@
 """Block blocking calls being done in asyncio."""
 
+from __future__ import annotations
+
 import builtins
 from collections.abc import Callable
 from contextlib import suppress

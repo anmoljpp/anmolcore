@@ -1,5 +1,7 @@
 """Expose images as media sources."""
 
+from __future__ import annotations
+
 from typing import cast
 
 from homeassistant.components.media_player import BrowseError, MediaClass

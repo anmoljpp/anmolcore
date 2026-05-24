@@ -1,5 +1,7 @@
 """Ban logic for HTTP component."""
 
+from __future__ import annotations
+
 from collections import defaultdict
 from collections.abc import Awaitable, Callable, Coroutine
 from contextlib import suppress
@@ -91,7 +93,7 @@ async def ban_middleware(
         raise
 
 
-def log_invalid_auth[_HassViewT: HomeAssistantView, **_P](
+def log_invalid_auth(
     func: Callable[Concatenate[_HassViewT, Request, _P], Awaitable[Response]],
 ) -> Callable[Concatenate[_HassViewT, Request, _P], Coroutine[Any, Any, Response]]:
     """Decorate function to handle invalid auth or failed login attempts."""

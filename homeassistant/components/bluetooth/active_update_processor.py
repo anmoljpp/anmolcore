@@ -3,6 +3,8 @@
 Collects data from advertisements but can also poll.
 """
 
+from __future__ import annotations
+
 from collections.abc import Callable, Coroutine
 import logging
 from typing import Any
@@ -20,9 +22,7 @@ POLL_DEFAULT_COOLDOWN = 10
 POLL_DEFAULT_IMMEDIATE = True
 
 
-class ActiveBluetoothProcessorCoordinator[_DataT](
-    PassiveBluetoothProcessorCoordinator[_DataT]
-):
+class ActiveBluetoothProcessorCoordinator(PassiveBluetoothProcessorCoordinator[_DataT]):
     """A processor coordinator that parses passive data.
 
     Parses passive data from advertisements but can also poll.

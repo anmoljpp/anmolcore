@@ -1,5 +1,7 @@
 """Helper methods to handle the time in Home Assistant."""
 
+from __future__ import annotations
+
 import bisect
 from contextlib import suppress
 import datetime as dt

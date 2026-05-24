@@ -1,5 +1,7 @@
 """Repairs for the zeroconf integration."""
 
+from __future__ import annotations
+
 from homeassistant.components.homeassistant import (
     DOMAIN as HOMEASSISTANT_DOMAIN,
     SERVICE_HOMEASSISTANT_RESTART,

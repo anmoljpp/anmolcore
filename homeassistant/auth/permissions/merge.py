@@ -1,5 +1,7 @@
 """Merging of policies."""
 
+from __future__ import annotations
+
 from typing import cast
 
 from .types import CategoryType, PolicyType

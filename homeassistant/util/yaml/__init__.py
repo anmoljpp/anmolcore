@@ -1,5 +1,7 @@
 """YAML utility functions."""
 
+from __future__ import annotations
+
 from annotatedyaml import SECRET_YAML, Input, YamlTypeError
 from annotatedyaml.input import UndefinedSubstitution, extract_inputs, substitute
 

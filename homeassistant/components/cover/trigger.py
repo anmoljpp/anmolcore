@@ -1,5 +1,7 @@
 """Provides triggers for covers."""
 
+from __future__ import annotations
+
 from collections.abc import Mapping
 
 from homeassistant.const import STATE_OFF, STATE_ON

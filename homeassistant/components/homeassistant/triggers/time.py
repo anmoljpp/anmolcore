@@ -1,5 +1,7 @@
 """Offer time listening automation rules."""
 
+from __future__ import annotations
+
 from collections.abc import Callable
 from datetime import datetime, timedelta
 from functools import partial

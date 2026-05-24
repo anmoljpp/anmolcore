@@ -1,5 +1,7 @@
 """Service calling related helpers."""
 
+from __future__ import annotations
+
 import asyncio
 from collections.abc import Callable, Coroutine, Iterable, Mapping, Sequence
 import dataclasses
@@ -390,7 +392,7 @@ def extract_entity_ids(
 
 
 @deprecated_hass_argument(breaks_in_ha_version="2026.10")
-async def async_extract_entities[_EntityT: Entity](
+async def async_extract_entities(
     entities: Iterable[_EntityT],
     service_call: ServiceCall,
     expand_group: bool = True,
@@ -1107,7 +1109,7 @@ def verify_domain_control(
     return decorator
 
 
-class ReloadServiceHelper[_T]:
+class ReloadServiceHelper(Generic[_T]):
     """Helper for reload services.
 
     The helper has the following purposes:
@@ -1235,7 +1237,7 @@ def async_register_entity_service(
 
 
 @callback
-def async_register_batched_entity_service[_EntityT: Entity](
+def async_register_batched_entity_service(
     hass: HomeAssistant,
     domain: str,
     name: str,
@@ -1332,7 +1334,7 @@ def async_register_platform_entity_service(
 
 
 @callback
-def async_register_batched_platform_entity_service[_EntityT: Entity](
+def async_register_batched_platform_entity_service(
     hass: HomeAssistant,
     service_domain: str,
     service_name: str,

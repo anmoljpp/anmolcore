@@ -1,8 +1,10 @@
 """Connection session."""
 
+from __future__ import annotations
+
 from collections.abc import Callable, Hashable
 from contextvars import ContextVar
-from typing import TYPE_CHECKING, Any, Literal
+from typing import TYPE_CHECKING, Any, Literal, TypeAlias
 
 from aiohttp import web
 import voluptuous as vol
@@ -40,8 +42,8 @@ REDACT_KEYS = {
     "auth_token",
 }
 
-type MessageHandler = Callable[[HomeAssistant, ActiveConnection, dict[str, Any]], None]
-type BinaryHandler = Callable[[HomeAssistant, ActiveConnection, bytes], None]
+MessageHandler: TypeAlias = Callable[[HomeAssistant, ActiveConnection, dict[str, Any]], None]
+BinaryHandler: TypeAlias = Callable[[HomeAssistant, ActiveConnection, bytes], None]
 
 
 class ActiveConnection:

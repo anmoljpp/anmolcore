@@ -1,3 +1,6 @@
+from __future__ import annotations
+
+from typing import TypeAlias
 """Helper to create SSL contexts."""
 
 import contextlib
@@ -9,7 +12,7 @@ import ssl
 import certifi
 
 # Type alias for ALPN protocols tuple (None means no ALPN protocols set)
-type SSLALPNProtocols = tuple[str, ...] | None
+SSLALPNProtocols: TypeAlias = tuple[str, ...] | None
 
 # ALPN protocol configurations
 # No ALPN protocols - used for libraries that don't support/need ALPN (e.g., aioimap)

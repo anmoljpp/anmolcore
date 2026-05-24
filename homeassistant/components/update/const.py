@@ -1,5 +1,7 @@
 """Constants for the update component."""
 
+from __future__ import annotations
+
 from enum import IntFlag
 from typing import Final
 

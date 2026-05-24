@@ -1,5 +1,7 @@
 """Handle the frontend for Home Assistant."""
 
+from __future__ import annotations
+
 from collections.abc import Callable, Iterator
 from functools import lru_cache, partial
 import logging
@@ -60,7 +62,77 @@ CONF_GITHUB_TOKEN = "github_token"
 
 DEV_ARTIFACTS_DIR = "development_artifacts"
 
-DEFAULT_THEME_COLOR = "#2980b9"
+DEFAULT_THEME_COLOR = "#7C4DFF"
+
+# Built-in premium dark theme
+BUILTIN_PREMIUM_THEME = {
+    "primary-color": "#7C4DFF",
+    "accent-color": "#FF4081",
+    "primary-background-color": "#0A0E14",
+    "secondary-background-color": "#111822",
+    "card-background-color": "#151D2B",
+    "primary-text-color": "#E4E8EE",
+    "secondary-text-color": "#7E8A9A",
+    "text-primary-color": "#E4E8EE",
+    "app-header-background-color": "#0A0E14",
+    "app-header-text-color": "#E4E8EE",
+    "sidebar-background-color": "#0A0E14",
+    "sidebar-text-color": "#C8CDD4",
+    "sidebar-selected-background-color": "rgba(124, 77, 255, 0.12)",
+    "sidebar-selected-icon-color": "#7C4DFF",
+    "sidebar-icon-color": "#7E8A9A",
+    "ha-card-background": "#151D2B",
+    "ha-card-border-color": "rgba(255,255,255,0.06)",
+    "ha-card-border-width": "1px",
+    "ha-card-border-radius": "18px",
+    "ha-card-box-shadow": "0 2px 16px rgba(0,0,0,0.35), 0 0 1px rgba(255,255,255,0.05)",
+    "switch-checked-color": "#7C4DFF",
+    "switch-unchecked-color": "#2A3444",
+    "switch-checked-track-color": "rgba(124, 77, 255, 0.35)",
+    "divider-color": "rgba(255,255,255,0.06)",
+    "state-icon-active-color": "#7C4DFF",
+    "state-icon-color": "#7E8A9A",
+    "paper-slider-active-color": "#7C4DFF",
+    "paper-slider-knob-color": "#7C4DFF",
+    "paper-slider-container-color": "#2A3444",
+    "input-fill-color": "#111822",
+    "input-ink-color": "#E4E8EE",
+    "input-label-ink-color": "#7E8A9A",
+    "input-idle-line-color": "#2A3444",
+    "input-dropdown-icon-color": "#7E8A9A",
+    "label-badge-background-color": "#151D2B",
+    "label-badge-text-color": "#E4E8EE",
+    "label-badge-red": "#FF4081",
+    "label-badge-green": "#00E676",
+    "label-badge-blue": "#7C4DFF",
+    "label-badge-yellow": "#FFD740",
+    "paper-tabs-selection-bar-color": "#7C4DFF",
+    "ha-dialog-border-radius": "18px",
+    "scrollbar-thumb-color": "#2A3444",
+    "mdc-button-outline-color": "#7C4DFF",
+    "paper-toggle-button-checked-bar-color": "#7C4DFF",
+    "paper-toggle-button-checked-button-color": "#7C4DFF",
+    "table-row-background-color": "#151D2B",
+    "table-row-alternative-background-color": "#111822",
+    "data-table-background-color": "#151D2B",
+    "markdown-code-background-color": "#111822",
+    "code-editor-background-color": "#0A0E14",
+    "disabled-text-color": "#4A5568",
+    "error-color": "#FF5252",
+    "warning-color": "#FFB300",
+    "success-color": "#00E676",
+    "info-color": "#448AFF",
+    "ha-chip-background-color": "#1A2332",
+    "energy-grid-consumption-color": "#7C4DFF",
+    "energy-solar-color": "#FFD740",
+    "energy-battery-in-color": "#00E676",
+    "energy-battery-out-color": "#FF4081",
+    "modes": {
+        "dark": {
+            "primary-background-color": "#0A0E14",
+        },
+    },
+}
 
 
 DATA_PANELS: HassKey[dict[str, Panel]] = HassKey("frontend_panels")
@@ -198,7 +270,7 @@ class Manifest:
 
 MANIFEST_JSON = Manifest(
     {
-        "background_color": "#FFFFFF",
+        "background_color": "#0A0E14",
         "description": (
             "Home automation platform that puts local control and privacy first."
         ),
@@ -656,14 +728,17 @@ async def _async_setup_themes(
     """Set up themes data and services."""
     hass.data[DATA_THEMES] = themes or {}
 
+    # Always inject the built-in premium dark theme
+    hass.data[DATA_THEMES]["premium_dark"] = BUILTIN_PREMIUM_THEME
+
     store = hass.data[DATA_THEMES_STORE] = Store(
         hass, THEMES_STORAGE_VERSION, THEMES_STORAGE_KEY
     )
 
     if not (theme_data := await store.async_load()) or not isinstance(theme_data, dict):
         theme_data = {}
-    theme_name = theme_data.get(DATA_DEFAULT_THEME, DEFAULT_THEME)
-    dark_theme_name = theme_data.get(DATA_DEFAULT_DARK_THEME)
+    theme_name = theme_data.get(DATA_DEFAULT_THEME, "premium_dark")
+    dark_theme_name = theme_data.get(DATA_DEFAULT_DARK_THEME, "premium_dark")
 
     if theme_name == DEFAULT_THEME or theme_name in hass.data[DATA_THEMES]:
         hass.data[DATA_DEFAULT_THEME] = theme_name

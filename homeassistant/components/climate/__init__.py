@@ -1,5 +1,7 @@
 """Provides functionality to interact with climate devices."""
 
+from __future__ import annotations
+
 from datetime import timedelta
 import functools as ft
 import logging

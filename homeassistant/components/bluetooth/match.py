@@ -1,5 +1,7 @@
 """The bluetooth integration matchers."""
 
+from __future__ import annotations
+
 from collections import defaultdict
 from dataclasses import dataclass
 from fnmatch import translate
@@ -155,9 +157,7 @@ class IntegrationMatcher:
         return matched_domains
 
 
-class BluetoothMatcherIndexBase[
-    _T: (BluetoothMatcher, BluetoothCallbackMatcherWithCallback)
-]:
+class BluetoothMatcherIndexBase(Generic[_T]):
     """Bluetooth matcher base for the bluetooth integration.
 
     The indexer puts each matcher in the bucket that it is most

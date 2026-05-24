@@ -1,5 +1,7 @@
 """Platform allowing several valves to be grouped into one valve."""
 
+from __future__ import annotations
+
 from typing import Any
 
 import voluptuous as vol

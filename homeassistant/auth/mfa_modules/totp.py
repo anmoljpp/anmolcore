@@ -1,5 +1,7 @@
 """Time-based One Time Password auth module."""
 
+from __future__ import annotations
+
 import asyncio
 from io import BytesIO
 from typing import Any, cast

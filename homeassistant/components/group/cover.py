@@ -1,5 +1,7 @@
 """Platform allowing several cover to be grouped into one cover."""
 
+from __future__ import annotations
+
 from typing import Any
 
 import voluptuous as vol

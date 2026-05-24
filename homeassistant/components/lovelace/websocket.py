@@ -1,5 +1,7 @@
 """Websocket API for Lovelace."""
 
+from __future__ import annotations
+
 from collections.abc import Awaitable, Callable
 from functools import wraps
 from typing import TYPE_CHECKING, Any
@@ -30,7 +32,7 @@ type AsyncLovelaceWebSocketCommandHandler[_R] = Callable[
 ]
 
 
-def _handle_errors[_R](
+def _handle_errors(
     func: AsyncLovelaceWebSocketCommandHandler[_R],
 ) -> websocket_api.AsyncWebSocketCommandHandler:
     """Handle error with WebSocket calls."""

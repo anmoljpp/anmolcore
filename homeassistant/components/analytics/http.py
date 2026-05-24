@@ -1,5 +1,7 @@
 """HTTP endpoints for analytics integration."""
 
+from __future__ import annotations
+
 from aiohttp import web
 
 from homeassistant.components.http import KEY_HASS, HomeAssistantView, require_admin

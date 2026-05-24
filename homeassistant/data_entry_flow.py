@@ -1,5 +1,7 @@
 """Classes to help gather user submissions."""
 
+from __future__ import annotations
+
 import abc
 import asyncio
 from collections import defaultdict
@@ -10,7 +12,8 @@ from dataclasses import dataclass
 from enum import StrEnum
 import logging
 from types import MappingProxyType
-from typing import Any, Generic, Required, TypedDict, TypeVar, cast
+from typing import Any, Generic, Required, TypedDict, cast
+from typing_extensions import TypeVar
 
 import voluptuous as vol
 

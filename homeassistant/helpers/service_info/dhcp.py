@@ -1,5 +1,7 @@
 """DHCP discovery data."""
 
+from __future__ import annotations
+
 from dataclasses import dataclass
 
 from homeassistant.data_entry_flow import BaseServiceInfo

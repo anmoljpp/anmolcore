@@ -1,5 +1,7 @@
 """Expose cameras as media sources."""
 
+from __future__ import annotations
+
 import asyncio
 
 from homeassistant.components.media_player import BrowseError, MediaClass

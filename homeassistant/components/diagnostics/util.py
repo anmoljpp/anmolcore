@@ -1,5 +1,7 @@
 """Diagnostic utilities."""
 
+from __future__ import annotations
+
 from collections.abc import Iterable, Mapping
 from typing import Any, cast, overload
 
@@ -16,11 +18,11 @@ def async_redact_data(data: Mapping, to_redact: Iterable[Any]) -> dict: ...
 
 
 @overload
-def async_redact_data[_T](data: _T, to_redact: Iterable[Any]) -> _T: ...
+def async_redact_data(data: _T, to_redact: Iterable[Any]) -> _T: ...
 
 
 @callback
-def async_redact_data[_T](data: _T, to_redact: Iterable[Any]) -> _T:
+def async_redact_data(data: _T, to_redact: Iterable[Any]) -> _T:
     """Redact sensitive data in a dict."""
     if not isinstance(data, (Mapping, list)):
         return data

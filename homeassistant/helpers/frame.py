@@ -1,5 +1,7 @@
 """Provide frame helper for finding the current frame context."""
 
+from __future__ import annotations
+
 from collections.abc import Callable
 from dataclasses import dataclass
 import enum
@@ -393,7 +395,7 @@ def _report_usage_no_integration(
         _LOGGER.warning(msg, stack_info=True)
 
 
-def warn_use[_CallableT: Callable](func: _CallableT, what: str) -> _CallableT:
+def warn_use(func: _CallableT, what: str) -> _CallableT:
     """Mock a function to warn when it was about to be used."""
     if inspect.iscoroutinefunction(func):
 

@@ -1,5 +1,7 @@
 """Helpers for the history integration."""
 
+from __future__ import annotations
+
 from collections.abc import Iterable
 from datetime import datetime as dt
 

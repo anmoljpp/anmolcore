@@ -1,5 +1,7 @@
 """Support for the definition of zones."""
 
+from __future__ import annotations
+
 from collections.abc import Callable
 import logging
 from operator import attrgetter

@@ -1,5 +1,7 @@
 """Component to interface with various sensors that can be monitored."""
 
+from __future__ import annotations
+
 import asyncio
 from collections.abc import Callable, Mapping
 from contextlib import suppress

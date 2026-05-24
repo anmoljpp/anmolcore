@@ -1,12 +1,14 @@
 """Provide a way to assign areas to floors in one's home."""
 
+from __future__ import annotations
+
 from collections import defaultdict
 from collections.abc import Iterable
 import dataclasses
 from dataclasses import dataclass
 from datetime import datetime
 import math
-from typing import Any, Literal, TypedDict
+from typing import Any, Literal, TypedDict, TypeAlias
 
 from homeassistant.core import Event, HomeAssistant, callback
 from homeassistant.util.dt import utc_from_timestamp, utcnow
@@ -63,12 +65,12 @@ class _EventFloorRegistryUpdatedData_Reorder(TypedDict):
     action: Literal["reorder"]
 
 
-type EventFloorRegistryUpdatedData = (
+EventFloorRegistryUpdatedData: TypeAlias = (
     _EventFloorRegistryUpdatedData_Create_Remove_Update
     | _EventFloorRegistryUpdatedData_Reorder
 )
 
-type EventFloorRegistryUpdated = Event[EventFloorRegistryUpdatedData]
+EventFloorRegistryUpdated: TypeAlias = Event[EventFloorRegistryUpdatedData]
 
 
 @dataclass(slots=True, kw_only=True, frozen=True)

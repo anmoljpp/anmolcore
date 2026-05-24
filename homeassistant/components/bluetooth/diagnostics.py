@@ -1,5 +1,7 @@
 """Diagnostics support for bluetooth."""
 
+from __future__ import annotations
+
 import platform
 from typing import Any
 

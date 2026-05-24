@@ -1,5 +1,7 @@
 """Constants for the automation integration."""
 
+from __future__ import annotations
+
 import logging
 
 CONF_TRIGGER_VARIABLES = "trigger_variables"

@@ -1,5 +1,7 @@
 """Local backup support for Core and Container installations."""
 
+from __future__ import annotations
+
 import asyncio
 from collections.abc import AsyncIterator, Callable, Coroutine
 import copy
@@ -165,7 +167,7 @@ def validate_password(path: Path, password: str | None) -> bool:
             ):
                 # If we can read the tar file, the password is correct
                 return True
-        except tarfile.ReadError, InvalidPasswordError, SecureTarReadError:
+        except (tarfile.ReadError, InvalidPasswordError, SecureTarReadError):
             LOGGER.debug("Invalid password")
             return False
         except Exception:  # noqa: BLE001

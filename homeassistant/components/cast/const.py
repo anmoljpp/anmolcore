@@ -1,5 +1,7 @@
 """Consts for Cast integration."""
 
+from __future__ import annotations
+
 from typing import TYPE_CHECKING, NotRequired, TypedDict
 
 from homeassistant.util.signal_type import SignalType

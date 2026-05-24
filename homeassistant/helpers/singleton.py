@@ -1,5 +1,7 @@
 """Helper to help coordinating calls."""
 
+from __future__ import annotations
+
 import asyncio
 from collections.abc import Callable, Coroutine
 import functools
@@ -14,22 +16,22 @@ type _Coro[_T] = Coroutine[Any, Any, _T]
 
 
 @overload
-def singleton[_T](
+def singleton(
     data_key: HassKey[_T], *, async_: Literal[True]
 ) -> Callable[[_FuncType[_Coro[_T]]], _FuncType[_Coro[_T]]]: ...
 
 
 @overload
-def singleton[_T](
+def singleton(
     data_key: HassKey[_T],
 ) -> Callable[[_FuncType[_T]], _FuncType[_T]]: ...
 
 
 @overload
-def singleton[_T](data_key: str) -> Callable[[_FuncType[_T]], _FuncType[_T]]: ...
+def singleton(data_key: str) -> Callable[[_FuncType[_T]], _FuncType[_T]]: ...
 
 
-def singleton[_S, _T, _U](
+def singleton(
     data_key: Any, *, async_: bool = False
 ) -> Callable[[_FuncType[_S]], _FuncType[_S]]:
     """Decorate a function that should be called once per instance.

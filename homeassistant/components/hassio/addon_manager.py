@@ -1,5 +1,7 @@
 """Provide add-on management."""
 
+from __future__ import annotations
+
 import asyncio
 from collections.abc import Awaitable, Callable, Coroutine
 from dataclasses import dataclass
@@ -32,7 +34,7 @@ type _ReturnFuncType[_T, **_P, _R] = Callable[
 ]
 
 
-def api_error[_AddonManagerT: AddonManager, **_P, _R](
+def api_error(
     error_message: str,
 ) -> Callable[
     [_FuncType[_AddonManagerT, _P, _R]], _ReturnFuncType[_AddonManagerT, _P, _R]

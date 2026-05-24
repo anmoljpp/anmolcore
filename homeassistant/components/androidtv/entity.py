@@ -1,5 +1,7 @@
 """Base AndroidTV Entity."""
 
+from __future__ import annotations
+
 from collections.abc import Awaitable, Callable, Coroutine
 import functools
 import logging
@@ -39,7 +41,7 @@ type _ReturnFuncType[_T, **_P, _R] = Callable[
 ]
 
 
-def adb_decorator[_ADBDeviceT: AndroidTVEntity, **_P, _R](
+def adb_decorator(
     override_available: bool = False,
 ) -> Callable[[_FuncType[_ADBDeviceT, _P, _R]], _ReturnFuncType[_ADBDeviceT, _P, _R]]:
     """Wrap ADB methods and catch exceptions.

@@ -1,8 +1,10 @@
 """Decorators for the Home Assistant API."""
 
+from __future__ import annotations
+
 from collections.abc import Callable, Coroutine
 from functools import wraps
-from typing import Any, Concatenate, overload
+from typing import Any, Concatenate, overload, TypeAlias
 
 from aiohttp.web import Request, Response, StreamResponse
 
@@ -11,18 +13,14 @@ from homeassistant.exceptions import Unauthorized
 
 from .view import HomeAssistantView
 
-type _ResponseType = Response | StreamResponse
+_ResponseType: TypeAlias = Response | StreamResponse
 type _FuncType[_T, **_P, _R] = Callable[
     Concatenate[_T, Request, _P], Coroutine[Any, Any, _R]
 ]
 
 
 @overload
-def require_admin[
-    _HomeAssistantViewT: HomeAssistantView,
-    **_P,
-    _ResponseT: _ResponseType,
-](
+def require_admin(
     _func: None = None,
     *,
     perm_category: str | None = None,
@@ -34,20 +32,12 @@ def require_admin[
 
 
 @overload
-def require_admin[
-    _HomeAssistantViewT: HomeAssistantView,
-    **_P,
-    _ResponseT: _ResponseType,
-](
+def require_admin(
     _func: _FuncType[_HomeAssistantViewT, _P, _ResponseT],
 ) -> _FuncType[_HomeAssistantViewT, _P, _ResponseT]: ...
 
 
-def require_admin[
-    _HomeAssistantViewT: HomeAssistantView,
-    **_P,
-    _ResponseT: _ResponseType,
-](
+def require_admin(
     _func: _FuncType[_HomeAssistantViewT, _P, _ResponseT] | None = None,
     *,
     perm_category: str | None = None,

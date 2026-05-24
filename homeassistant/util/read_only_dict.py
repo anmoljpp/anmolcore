@@ -1,5 +1,7 @@
 """Read only dictionary."""
 
+from __future__ import annotations
+
 from copy import deepcopy
 from typing import Any, final
 
@@ -10,7 +12,7 @@ def _readonly(*args: Any, **kwargs: Any) -> Any:
 
 
 @final  # Final to allow direct checking of the type instead of using isinstance
-class ReadOnlyDict[_KT, _VT](dict[_KT, _VT]):
+class ReadOnlyDict(dict[_KT, _VT]):
     """Read only version of dict that is compatible with dict types."""
 
     __setitem__ = _readonly

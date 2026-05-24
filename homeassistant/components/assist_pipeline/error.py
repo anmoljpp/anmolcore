@@ -1,5 +1,7 @@
 """Assist pipeline errors."""
 
+from __future__ import annotations
+
 from typing import TYPE_CHECKING
 
 from homeassistant.exceptions import HomeAssistantError

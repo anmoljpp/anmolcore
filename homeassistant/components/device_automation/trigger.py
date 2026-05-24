@@ -1,5 +1,7 @@
 """Offer device oriented automation."""
 
+from __future__ import annotations
+
 from typing import Any, Protocol
 
 import voluptuous as vol

@@ -1,5 +1,7 @@
 """Provides triggers for humidifiers."""
 
+from __future__ import annotations
+
 import voluptuous as vol
 
 from homeassistant.const import ATTR_MODE, CONF_MODE, CONF_OPTIONS, STATE_OFF, STATE_ON

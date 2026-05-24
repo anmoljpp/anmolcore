@@ -1,5 +1,7 @@
 """Config flow to configure the Android Debug Bridge integration."""
 
+from __future__ import annotations
+
 import logging
 import os
 from typing import Any

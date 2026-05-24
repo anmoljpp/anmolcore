@@ -1,12 +1,14 @@
 """Webhooks for Home Assistant."""
 
+from __future__ import annotations
+
 from collections.abc import Awaitable, Callable, Iterable
 from dataclasses import dataclass
 from http import HTTPStatus
 from ipaddress import ip_address
 import logging
 import secrets
-from typing import TYPE_CHECKING, Any, cast
+from typing import TYPE_CHECKING, Any, cast, TypeAlias
 
 from aiohttp import StreamReader
 from aiohttp.hdrs import METH_GET, METH_HEAD, METH_POST, METH_PUT
@@ -33,7 +35,7 @@ URL_WEBHOOK_PATH = "/api/webhook/{webhook_id}"
 
 CONFIG_SCHEMA = cv.empty_config_schema(DOMAIN)
 
-type HandlerType = Callable[[HomeAssistant, str, Request], Awaitable[Response | None]]
+HandlerType: TypeAlias = Callable[[HomeAssistant, str, Request], Awaitable[Response | None]]
 
 
 @dataclass(frozen=True, slots=True)

@@ -3,6 +3,8 @@
 To update, run python3 -m script.currencies
 """
 
+from __future__ import annotations
+
 ACTIVE_CURRENCIES = {
     "AED",
     "AFN",

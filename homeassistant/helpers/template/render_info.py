@@ -1,5 +1,7 @@
 """Template render information tracking for Home Assistant."""
 
+from __future__ import annotations
+
 import collections.abc
 from collections.abc import Callable
 from contextvars import ContextVar

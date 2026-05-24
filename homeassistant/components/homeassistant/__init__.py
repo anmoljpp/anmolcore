@@ -1,5 +1,7 @@
 """Integration providing core pieces of infrastructure."""
 
+from __future__ import annotations
+
 import asyncio
 from collections.abc import Callable, Coroutine
 import itertools as it

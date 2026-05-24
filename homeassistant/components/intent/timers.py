@@ -1,12 +1,14 @@
 """Timer implementation for intents."""
 
+from __future__ import annotations
+
 import asyncio
 from collections.abc import Callable
 from dataclasses import dataclass
 from enum import StrEnum
 import logging
 import time
-from typing import Any
+from typing import Any, TypeAlias
 
 from propcache.api import cached_property
 import voluptuous as vol
@@ -172,7 +174,7 @@ class TimerEventType(StrEnum):
     """Timer finished without being cancelled."""
 
 
-type TimerHandler = Callable[[TimerEventType, TimerInfo], None]
+TimerHandler: TypeAlias = Callable[[TimerEventType, TimerInfo], None]
 
 
 class TimerNotFoundError(intent.IntentHandleError):

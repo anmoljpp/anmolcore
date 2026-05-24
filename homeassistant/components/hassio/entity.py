@@ -1,5 +1,7 @@
 """Base for Hass.io entities."""
 
+from __future__ import annotations
+
 from collections.abc import Callable
 
 from aiohasupervisor.models import CIFSMountResponse, HostInfo, NFSMountResponse, OSInfo

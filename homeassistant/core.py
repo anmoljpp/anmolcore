@@ -4,6 +4,8 @@ Home Assistant is a Home Automation framework for observing the state
 of entities and react to changes.
 """
 
+from __future__ import annotations
+
 import asyncio
 from collections import UserDict, defaultdict
 from collections.abc import (
@@ -33,12 +35,13 @@ from typing import (
     Generic,
     NotRequired,
     Self,
+    TypeAlias,
     TypedDict,
-    TypeVar,
     cast,
     final,
     overload,
 )
+from typing_extensions import TypeVar
 
 from propcache.api import cached_property, under_cached_property
 import voluptuous as vol
@@ -115,15 +118,15 @@ CLOSE_STAGE_SHUTDOWN_TIMEOUT = 30
 
 _SENTINEL = object()
 _DataT = TypeVar("_DataT", bound=Mapping[str, Any], default=Mapping[str, Any])
-type CALLBACK_TYPE = Callable[[], None]
+CALLBACK_TYPE: TypeAlias = Callable[[], None]
 
 DOMAIN = "homeassistant"
 
 # How long to wait to log tasks that are blocking
 BLOCK_LOG_TIMEOUT = 60
 
-type ServiceResponse = JsonObjectType | None
-type EntityServiceResponse = dict[str, ServiceResponse]
+ServiceResponse: TypeAlias = JsonObjectType | None
+EntityServiceResponse: TypeAlias = dict[str, ServiceResponse]
 
 
 class EventStateEventData(TypedDict):
@@ -291,7 +294,7 @@ class HassJobType(enum.Enum):
 
 
 @final  # Final to allow direct checking of the type instead of using isinstance
-class HassJob[**_P, _R_co]:
+class HassJob(Generic[_P, _R_co]):
     """Represent a job to be run later.
 
     We check the callable type in advance
@@ -537,7 +540,7 @@ class HomeAssistant:
         self.bus.async_fire_internal(EVENT_CORE_CONFIG_UPDATE)
         self.bus.async_fire_internal(EVENT_HOMEASSISTANT_STARTED)
 
-    def add_job[*_Ts](
+    def add_job(
         self, target: Callable[[*_Ts], Any] | Coroutine[Any, Any, Any], *args: *_Ts
     ) -> None:
         """Add a job to be executed by the event loop or by an executor.
@@ -571,7 +574,7 @@ class HomeAssistant:
 
     @overload
     @callback
-    def async_add_job[_R, *_Ts](
+    def async_add_job(
         self,
         target: Callable[[*_Ts], Coroutine[Any, Any, _R]],
         *args: *_Ts,
@@ -580,7 +583,7 @@ class HomeAssistant:
 
     @overload
     @callback
-    def async_add_job[_R, *_Ts](
+    def async_add_job(
         self,
         target: Callable[[*_Ts], Coroutine[Any, Any, _R] | _R],
         *args: *_Ts,
@@ -589,7 +592,7 @@ class HomeAssistant:
 
     @overload
     @callback
-    def async_add_job[_R](
+    def async_add_job(
         self,
         target: Coroutine[Any, Any, _R],
         *args: Any,
@@ -597,7 +600,7 @@ class HomeAssistant:
     ) -> asyncio.Future[_R] | None: ...
 
     @callback
-    def async_add_job[_R, *_Ts](
+    def async_add_job(
         self,
         target: Callable[[*_Ts], Coroutine[Any, Any, _R] | _R]
         | Coroutine[Any, Any, _R],
@@ -636,7 +639,7 @@ class HomeAssistant:
 
     @overload
     @callback
-    def async_add_hass_job[_R](
+    def async_add_hass_job(
         self,
         hassjob: HassJob[..., Coroutine[Any, Any, _R]],
         *args: Any,
@@ -646,7 +649,7 @@ class HomeAssistant:
 
     @overload
     @callback
-    def async_add_hass_job[_R](
+    def async_add_hass_job(
         self,
         hassjob: HassJob[..., Coroutine[Any, Any, _R] | _R],
         *args: Any,
@@ -655,7 +658,7 @@ class HomeAssistant:
     ) -> asyncio.Future[_R] | None: ...
 
     @callback
-    def async_add_hass_job[_R](
+    def async_add_hass_job(
         self,
         hassjob: HassJob[..., Coroutine[Any, Any, _R] | _R],
         *args: Any,
@@ -686,7 +689,7 @@ class HomeAssistant:
 
     @overload
     @callback
-    def _async_add_hass_job[_R](
+    def _async_add_hass_job(
         self,
         hassjob: HassJob[..., Coroutine[Any, Any, _R]],
         *args: Any,
@@ -695,7 +698,7 @@ class HomeAssistant:
 
     @overload
     @callback
-    def _async_add_hass_job[_R](
+    def _async_add_hass_job(
         self,
         hassjob: HassJob[..., Coroutine[Any, Any, _R] | _R],
         *args: Any,
@@ -703,7 +706,7 @@ class HomeAssistant:
     ) -> asyncio.Future[_R] | None: ...
 
     @callback
-    def _async_add_hass_job[_R](
+    def _async_add_hass_job(
         self,
         hassjob: HassJob[..., Coroutine[Any, Any, _R] | _R],
         *args: Any,
@@ -761,7 +764,7 @@ class HomeAssistant:
         )
 
     @callback
-    def async_create_task[_R](
+    def async_create_task(
         self,
         target: Coroutine[Any, Any, _R],
         name: str | None = None,
@@ -781,7 +784,7 @@ class HomeAssistant:
         return self.async_create_task_internal(target, name, eager_start)
 
     @callback
-    def async_create_task_internal[_R](
+    def async_create_task_internal(
         self,
         target: Coroutine[Any, Any, _R],
         name: str | None = None,
@@ -812,7 +815,7 @@ class HomeAssistant:
         return task
 
     @callback
-    def async_create_background_task[_R](
+    def async_create_background_task(
         self, target: Coroutine[Any, Any, _R], name: str, eager_start: bool = True
     ) -> asyncio.Task[_R]:
         """Create a task from within the event loop.
@@ -844,7 +847,7 @@ class HomeAssistant:
         return task
 
     @callback
-    def async_add_executor_job[*_Ts, _T](
+    def async_add_executor_job(
         self, target: Callable[[*_Ts], _T], *args: *_Ts
     ) -> asyncio.Future[_T]:
         """Add an executor job from within the event loop."""
@@ -858,7 +861,7 @@ class HomeAssistant:
         return task
 
     @callback
-    def async_add_import_executor_job[*_Ts, _T](
+    def async_add_import_executor_job(
         self, target: Callable[[*_Ts], _T], *args: *_Ts
     ) -> asyncio.Future[_T]:
         """Add an import executor job from within the event loop.
@@ -869,7 +872,7 @@ class HomeAssistant:
 
     @overload
     @callback
-    def async_run_hass_job[_R](
+    def async_run_hass_job(
         self,
         hassjob: HassJob[..., Coroutine[Any, Any, _R]],
         *args: Any,
@@ -878,7 +881,7 @@ class HomeAssistant:
 
     @overload
     @callback
-    def async_run_hass_job[_R](
+    def async_run_hass_job(
         self,
         hassjob: HassJob[..., Coroutine[Any, Any, _R] | _R],
         *args: Any,
@@ -886,7 +889,7 @@ class HomeAssistant:
     ) -> asyncio.Future[_R] | None: ...
 
     @callback
-    def async_run_hass_job[_R](
+    def async_run_hass_job(
         self,
         hassjob: HassJob[..., Coroutine[Any, Any, _R] | _R],
         *args: Any,
@@ -915,24 +918,24 @@ class HomeAssistant:
 
     @overload
     @callback
-    def async_run_job[_R, *_Ts](
+    def async_run_job(
         self, target: Callable[[*_Ts], Coroutine[Any, Any, _R]], *args: *_Ts
     ) -> asyncio.Future[_R] | None: ...
 
     @overload
     @callback
-    def async_run_job[_R, *_Ts](
+    def async_run_job(
         self, target: Callable[[*_Ts], Coroutine[Any, Any, _R] | _R], *args: *_Ts
     ) -> asyncio.Future[_R] | None: ...
 
     @overload
     @callback
-    def async_run_job[_R](
+    def async_run_job(
         self, target: Coroutine[Any, Any, _R], *args: Any
     ) -> asyncio.Future[_R] | None: ...
 
     @callback
-    def async_run_job[_R, *_Ts](
+    def async_run_job(
         self,
         target: Callable[[*_Ts], Coroutine[Any, Any, _R] | _R]
         | Coroutine[Any, Any, _R],
@@ -1706,7 +1709,7 @@ class EventBus:
             # delete event_type list if empty
             if not self._listeners[event_type] and event_type != MATCH_ALL:
                 self._listeners.pop(event_type)
-        except KeyError, ValueError:
+        except (KeyError, ValueError):
             # KeyError is key event_type listener did not exist
             # ValueError if listener did not exist within event_type
             _LOGGER.exception(

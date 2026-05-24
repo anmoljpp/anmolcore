@@ -1,5 +1,7 @@
 """API for persistent storage for the frontend."""
 
+from __future__ import annotations
+
 import asyncio
 from collections.abc import Callable, Coroutine
 from functools import wraps

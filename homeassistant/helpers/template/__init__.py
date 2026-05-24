@@ -1,5 +1,7 @@
 """Template helper methods for rendering strings with Home Assistant data."""
 
+from __future__ import annotations
+
 from ast import literal_eval
 import asyncio
 import collections.abc
@@ -396,7 +398,7 @@ class Template:
         """Parse the result."""
         try:
             return _cached_parse_result(render_result)
-        except ValueError, TypeError, SyntaxError, MemoryError:
+        except (ValueError, TypeError, SyntaxError, MemoryError):
             pass
 
         return render_result

@@ -1,5 +1,7 @@
 """Persistently store issues raised by integrations."""
 
+from __future__ import annotations
+
 import dataclasses
 from datetime import datetime
 from enum import StrEnum

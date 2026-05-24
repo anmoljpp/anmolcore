@@ -1,5 +1,7 @@
 """Classes for voice assistant pipelines."""
 
+from __future__ import annotations
+
 import array
 import asyncio
 from collections import defaultdict, deque
@@ -11,7 +13,7 @@ from pathlib import Path
 from queue import Empty, Queue
 from threading import Thread
 import time
-from typing import TYPE_CHECKING, Any, cast
+from typing import TYPE_CHECKING, Any, cast, TypeAlias
 import wave
 
 import hass_nabucasa
@@ -410,7 +412,7 @@ class PipelineEvent:
     timestamp: str = field(default_factory=lambda: dt_util.utcnow().isoformat())
 
 
-type PipelineEventCallback = Callable[[PipelineEvent], None]
+PipelineEventCallback: TypeAlias = Callable[[PipelineEvent], None]
 
 
 @dataclass(frozen=True)
@@ -959,7 +961,7 @@ class PipelineRun:
                 metadata,
                 self._speech_to_text_stream(audio_stream=stream, stt_vad=stt_vad),
             )
-        except asyncio.CancelledError, TimeoutError:
+        except (asyncio.CancelledError, TimeoutError):
             raise  # expected
         except hass_nabucasa.auth.Unauthenticated as src_error:
             raise SpeechToTextError(

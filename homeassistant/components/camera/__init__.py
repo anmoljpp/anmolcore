@@ -1,5 +1,7 @@
 """Component to interface with cameras."""
 
+from __future__ import annotations
+
 import asyncio
 import collections
 from collections.abc import Awaitable, Callable, Coroutine
@@ -693,7 +695,7 @@ class Camera(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
             if write_state:
                 self.async_write_ha_state()
 
-    async def _async_get_supported_webrtc_provider[_T](
+    async def _async_get_supported_webrtc_provider(
         self, fn: Callable[[HomeAssistant, Camera], Coroutine[None, None, _T | None]]
     ) -> _T | None:
         """Get first provider that supports this camera."""

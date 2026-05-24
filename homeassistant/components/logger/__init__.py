@@ -1,5 +1,7 @@
 """Support for setting the level of logging for components."""
 
+from __future__ import annotations
+
 import logging
 import re
 

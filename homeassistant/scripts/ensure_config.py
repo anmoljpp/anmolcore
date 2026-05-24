@@ -1,5 +1,7 @@
 """Script to ensure a configuration file exists."""
 
+from __future__ import annotations
+
 import argparse
 import asyncio
 import os

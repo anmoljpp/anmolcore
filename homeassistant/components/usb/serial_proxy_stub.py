@@ -1,5 +1,7 @@
 """ESPHome serial proxy URI handler stub for serialx."""
 
+from __future__ import annotations
+
 from collections.abc import Callable
 
 from serialx import register_uri_handler

@@ -1,5 +1,7 @@
 """Support for the Lovelace UI."""
 
+from __future__ import annotations
+
 from contextlib import suppress
 from dataclasses import dataclass
 import logging
@@ -431,7 +433,7 @@ async def _async_migrate_default_config(
                 CONF_URL_PATH: DOMAIN,
             }
         )
-    except HomeAssistantError, vol.Invalid:
+    except (HomeAssistantError, vol.Invalid):
         _LOGGER.exception("Failed to create dashboard entry during migration")
         return
 

@@ -1,5 +1,7 @@
 """Helpers for script and condition tracing."""
 
+from __future__ import annotations
+
 from collections import deque
 from collections.abc import Callable, Coroutine, Generator
 from contextlib import contextmanager
@@ -130,7 +132,7 @@ def trace_id_get() -> tuple[str, str] | None:
     return trace_id_cv.get()
 
 
-def trace_stack_push[_T](
+def trace_stack_push(
     trace_stack_var: ContextVar[list[_T] | None], node: _T
 ) -> None:
     """Push an element to the top of a trace stack."""
@@ -148,7 +150,7 @@ def trace_stack_pop(trace_stack_var: ContextVar[list[Any] | None]) -> None:
         trace_stack.pop()
 
 
-def trace_stack_top[_T](trace_stack_var: ContextVar[list[_T] | None]) -> _T | None:
+def trace_stack_top(trace_stack_var: ContextVar[list[_T] | None]) -> _T | None:
     """Return the element at the top of a trace stack."""
     trace_stack = trace_stack_var.get()
     return trace_stack[-1] if trace_stack else None
@@ -258,7 +260,7 @@ def trace_path(suffix: str | list[str]) -> Generator[None]:
         trace_path_pop(count)
 
 
-def async_trace_path[*_Ts](
+def async_trace_path(
     suffix: str | list[str],
 ) -> Callable[
     [Callable[[*_Ts], Coroutine[Any, Any, None]]],

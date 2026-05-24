@@ -1,5 +1,7 @@
 """Asyncio utilities."""
 
+from __future__ import annotations
+
 from asyncio import (
     AbstractEventLoop,
     Future,
@@ -20,7 +22,7 @@ _LOGGER = logging.getLogger(__name__)
 _SHUTDOWN_RUN_CALLBACK_THREADSAFE = "_shutdown_run_callback_threadsafe"
 
 
-def create_eager_task[_T](
+def create_eager_task(
     coro: Coroutine[Any, Any, _T],
     *,
     name: str | None = None,
@@ -47,7 +49,7 @@ def cancelling(task: Future[Any]) -> bool:
     return bool((cancelling_ := getattr(task, "cancelling", None)) and cancelling_())
 
 
-def run_callback_threadsafe[_T, *_Ts](
+def run_callback_threadsafe(
     loop: AbstractEventLoop, callback: Callable[[*_Ts], _T], *args: *_Ts
 ) -> concurrent.futures.Future[_T]:
     """Submit a callback object to a given event loop.

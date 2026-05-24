@@ -1,5 +1,7 @@
 """Provides triggers for events."""
 
+from __future__ import annotations
+
 import voluptuous as vol
 
 from homeassistant.const import CONF_OPTIONS

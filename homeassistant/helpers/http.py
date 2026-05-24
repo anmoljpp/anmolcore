@@ -1,11 +1,13 @@
 """Helper to track the current http request."""
 
+from __future__ import annotations
+
 from collections.abc import Awaitable, Callable
 from contextvars import ContextVar
 from http import HTTPStatus
 import inspect
 import logging
-from typing import Any, Final
+from typing import Any, Final, TypeAlias
 
 from aiohttp import web
 from aiohttp.typedefs import LooseHeaders
@@ -28,7 +30,7 @@ from .json import find_paths_unserializable_data, json_bytes, json_dumps
 _LOGGER = logging.getLogger(__name__)
 
 
-type AllowCorsType = Callable[[AbstractRoute | AbstractResource], None]
+AllowCorsType: TypeAlias = Callable[[AbstractRoute | AbstractResource], None]
 KEY_AUTHENTICATED: Final = "ha_authenticated"
 KEY_ALLOW_ALL_CORS = AppKey[AllowCorsType]("allow_all_cors")
 KEY_ALLOW_CONFIGURED_CORS = AppKey[AllowCorsType]("allow_configured_cors")

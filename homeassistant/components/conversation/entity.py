@@ -1,5 +1,7 @@
 """Entity for conversation integration."""
 
+from __future__ import annotations
+
 from abc import abstractmethod
 from typing import Literal, final
 

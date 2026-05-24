@@ -1,5 +1,7 @@
 """Support to enter a value into a text box."""
 
+from __future__ import annotations
+
 import logging
 from typing import Any, Self
 

@@ -1,10 +1,12 @@
 """Provide a way to label and group anything."""
 
+from __future__ import annotations
+
 from collections.abc import Iterable
 import dataclasses
 from dataclasses import dataclass
 from datetime import datetime
-from typing import Any, Literal, TypedDict
+from typing import Any, Literal, TypedDict, TypeAlias
 
 from homeassistant.core import Event, HomeAssistant, callback
 from homeassistant.util.dt import utc_from_timestamp, utcnow
@@ -54,7 +56,7 @@ class EventLabelRegistryUpdatedData(TypedDict):
     label_id: str
 
 
-type EventLabelRegistryUpdated = Event[EventLabelRegistryUpdatedData]
+EventLabelRegistryUpdated: TypeAlias = Event[EventLabelRegistryUpdatedData]
 
 
 @dataclass(slots=True, frozen=True, kw_only=True)

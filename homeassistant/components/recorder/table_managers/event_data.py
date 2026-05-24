@@ -1,5 +1,7 @@
 """Support managing EventData."""
 
+from __future__ import annotations
+
 from collections.abc import Collection, Iterable
 import logging
 from typing import TYPE_CHECKING, cast

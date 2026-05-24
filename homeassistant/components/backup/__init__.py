@@ -1,5 +1,7 @@
 """The Backup integration."""
 
+from __future__ import annotations
+
 from homeassistant.config_entries import SOURCE_SYSTEM
 from homeassistant.const import Platform
 from homeassistant.core import HomeAssistant, callback

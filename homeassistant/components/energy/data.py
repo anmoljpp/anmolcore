@@ -1,9 +1,11 @@
 """Energy data."""
 
+from __future__ import annotations
+
 import asyncio
 from collections import Counter
 from collections.abc import Awaitable, Callable
-from typing import Any, Literal, NotRequired, TypedDict
+from typing import Any, Literal, NotRequired, TypedDict, TypeAlias
 
 import voluptuous as vol
 
@@ -222,7 +224,7 @@ class WaterSourceType(TypedDict):
     name: NotRequired[str]
 
 
-type SourceType = (
+SourceType: TypeAlias = (
     GridSourceType
     | SolarSourceType
     | BatterySourceType

@@ -1,7 +1,9 @@
 """Types for the energy platform."""
 
+from __future__ import annotations
+
 from collections.abc import Awaitable, Callable
-from typing import Protocol, TypedDict
+from typing import Protocol, TypedDict, TypeAlias
 
 from homeassistant.core import HomeAssistant
 
@@ -12,7 +14,7 @@ class SolarForecastType(TypedDict):
     wh_hours: dict[str, float | int]
 
 
-type GetSolarForecastType = Callable[
+GetSolarForecastType: TypeAlias = Callable[
     [HomeAssistant, str], Awaitable[SolarForecastType | None]
 ]
 

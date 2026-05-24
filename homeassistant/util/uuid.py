@@ -1,5 +1,7 @@
 """Helpers to generate uuids."""
 
+from __future__ import annotations
+
 from random import getrandbits
 
 

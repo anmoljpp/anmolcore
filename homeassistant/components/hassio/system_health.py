@@ -1,5 +1,7 @@
 """Provide info to system health."""
 
+from __future__ import annotations
+
 from collections.abc import Callable
 import os
 from typing import Any

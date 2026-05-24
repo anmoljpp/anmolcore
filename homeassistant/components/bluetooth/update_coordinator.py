@@ -1,5 +1,7 @@
 """Update coordinator for the Bluetooth integration."""
 
+from __future__ import annotations
+
 from abc import ABC, abstractmethod
 import logging
 

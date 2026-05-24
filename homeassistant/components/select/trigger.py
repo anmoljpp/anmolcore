@@ -1,5 +1,7 @@
 """Provides triggers for selects."""
 
+from __future__ import annotations
+
 from homeassistant.components.input_select import DOMAIN as INPUT_SELECT_DOMAIN
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.automation import DomainSpec

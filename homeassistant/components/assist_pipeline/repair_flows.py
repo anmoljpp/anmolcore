@@ -1,5 +1,7 @@
 """Repairs implementation for the cloud integration."""
 
+from __future__ import annotations
+
 from typing import cast
 
 import voluptuous as vol

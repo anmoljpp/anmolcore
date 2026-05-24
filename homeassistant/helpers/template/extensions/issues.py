@@ -1,5 +1,7 @@
 """Issue functions for Home Assistant templates."""
 
+from __future__ import annotations
+
 from typing import TYPE_CHECKING, Any
 
 from homeassistant.helpers import issue_registry as ir

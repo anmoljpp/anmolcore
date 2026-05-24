@@ -1,5 +1,7 @@
 """Implement the Ingress Panel feature for Hass.io Add-ons."""
 
+from __future__ import annotations
+
 from http import HTTPStatus
 import logging
 

@@ -1,5 +1,7 @@
 """Data models for the cover integration."""
 
+from __future__ import annotations
+
 from dataclasses import dataclass
 
 from homeassistant.helpers.automation import DomainSpec

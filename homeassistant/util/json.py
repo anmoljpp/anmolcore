@@ -1,8 +1,10 @@
 """JSON utility functions."""
 
+from __future__ import annotations
+
 import logging
 from os import PathLike
-from typing import Any
+from typing import Any, TypeAlias
 
 import orjson
 
@@ -11,13 +13,13 @@ from homeassistant.exceptions import HomeAssistantError
 _SENTINEL = object()
 _LOGGER = logging.getLogger(__name__)
 
-type JsonValueType = (
+JsonValueType: TypeAlias = (
     dict[str, JsonValueType] | list[JsonValueType] | str | int | float | bool | None
 )
 """Any data that can be returned by the standard JSON deserializing process."""
-type JsonArrayType = list[JsonValueType]
+JsonArrayType: TypeAlias = list[JsonValueType]
 """List that can be returned by the standard JSON deserializing process."""
-type JsonObjectType = dict[str, JsonValueType]
+JsonObjectType: TypeAlias = dict[str, JsonValueType]
 """Dictionary that can be returned by the standard JSON deserializing process."""
 
 JSON_ENCODE_EXCEPTIONS = (TypeError, ValueError)

@@ -1,5 +1,7 @@
 """Shared constants for script and automation tracing and debugging."""
 
+from __future__ import annotations
+
 from typing import TYPE_CHECKING
 
 from homeassistant.util.hass_dict import HassKey

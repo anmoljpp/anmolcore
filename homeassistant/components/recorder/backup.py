@@ -1,5 +1,7 @@
 """Backup platform for the Recorder integration."""
 
+from __future__ import annotations
+
 from logging import getLogger
 
 from homeassistant.core import CoreState, HomeAssistant

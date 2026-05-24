@@ -1,5 +1,7 @@
 """Allow users to set and activate scenes."""
 
+from __future__ import annotations
+
 import functools as ft
 import importlib
 import logging

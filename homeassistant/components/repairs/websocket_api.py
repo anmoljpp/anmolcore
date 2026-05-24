@@ -1,5 +1,7 @@
 """The repairs websocket API."""
 
+from __future__ import annotations
+
 from http import HTTPStatus
 from typing import Any
 

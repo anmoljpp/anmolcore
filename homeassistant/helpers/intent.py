@@ -1,5 +1,7 @@
 """Module to coordinate user intentions."""
 
+from __future__ import annotations
+
 from abc import abstractmethod
 import asyncio
 from collections.abc import Callable, Collection, Coroutine, Iterable
@@ -8,7 +10,7 @@ from dataclasses import dataclass, field
 from enum import Enum, StrEnum, auto
 from itertools import groupby
 import logging
-from typing import Any
+from typing import Any, TypeAlias
 
 from propcache.api import cached_property
 import voluptuous as vol
@@ -34,8 +36,8 @@ from .deprecation import EnumWithDeprecatedMembers
 from .typing import VolSchemaType
 
 _LOGGER = logging.getLogger(__name__)
-type _SlotsType = dict[str, Any]
-type _IntentSlotsType = dict[
+_SlotsType: TypeAlias = dict[str, Any]
+_IntentSlotsType: TypeAlias = dict[
     str | tuple[str, str], IntentSlotInfo | VolSchemaType | Callable[[Any], Any]
 ]
 

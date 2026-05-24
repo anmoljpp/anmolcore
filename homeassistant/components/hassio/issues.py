@@ -1,5 +1,7 @@
 """Supervisor events monitor."""
 
+from __future__ import annotations
+
 import asyncio
 from collections.abc import Callable
 from dataclasses import dataclass, field

@@ -1,5 +1,7 @@
 """Helpers for components that manage entities."""
 
+from __future__ import annotations
+
 import asyncio
 from collections.abc import Callable, Coroutine, Iterable, Mapping
 from datetime import timedelta
@@ -60,7 +62,7 @@ async def async_update_entity(hass: HomeAssistant, entity_id: str) -> None:
     await entity_obj.async_update_ha_state(True)
 
 
-class EntityComponent[_EntityT: entity.Entity = entity.Entity]:
+class EntityComponent(Generic[_EntityT]):
     """The EntityComponent manages platforms that manage entities.
 
     An example of an entity component is 'light', which manages platforms such

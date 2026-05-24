@@ -1,5 +1,7 @@
 """SQLAlchemy util functions."""
 
+from __future__ import annotations
+
 from collections.abc import Callable, Generator, Sequence
 import contextlib
 from contextlib import contextmanager
@@ -580,7 +582,7 @@ type _MethType[Self, **P, R] = Callable[Concatenate[Self, Recorder, P], R]
 type _FuncOrMethType[**_P, _R] = Callable[_P, _R]
 
 
-def retryable_database_job[**_P](
+def retryable_database_job(
     description: str,
 ) -> Callable[[_FuncType[_P, bool]], _FuncType[_P, bool]]:
     """Execute a database job repeatedly until it succeeds.
@@ -594,7 +596,7 @@ def retryable_database_job[**_P](
     return decorator
 
 
-def retryable_database_job_method[_Self, **_P](
+def retryable_database_job_method(
     description: str,
 ) -> Callable[[_MethType[_Self, _P, bool]], _MethType[_Self, _P, bool]]:
     """Execute a database job repeatedly until it succeeds.
@@ -608,7 +610,7 @@ def retryable_database_job_method[_Self, **_P](
     return decorator
 
 
-def _wrap_retryable_database_job_func_or_meth[**_P](
+def _wrap_retryable_database_job_func_or_meth(
     job: _FuncOrMethType[_P, bool], description: str, method: bool
 ) -> _FuncOrMethType[_P, bool]:
     recorder_pos = 1 if method else 0
@@ -636,7 +638,7 @@ def _wrap_retryable_database_job_func_or_meth[**_P](
     return wrapper
 
 
-def database_job_retry_wrapper[**_P, _R](
+def database_job_retry_wrapper(
     description: str, attempts: int
 ) -> Callable[[_FuncType[_P, _R]], _FuncType[_P, _R]]:
     """Execute a database job repeatedly until it succeeds, at most attempts times.
@@ -657,7 +659,7 @@ def database_job_retry_wrapper[**_P, _R](
     return decorator
 
 
-def database_job_retry_wrapper_method[_Self, **_P, _R](
+def database_job_retry_wrapper_method(
     description: str, attempts: int
 ) -> Callable[[_MethType[_Self, _P, _R]], _MethType[_Self, _P, _R]]:
     """Execute a database job repeatedly until it succeeds, at most attempts times.
@@ -678,7 +680,7 @@ def database_job_retry_wrapper_method[_Self, **_P, _R](
     return decorator
 
 
-def _database_job_retry_wrapper_func_or_meth[**_P, _R](
+def _database_job_retry_wrapper_func_or_meth(
     job: _FuncOrMethType[_P, _R],
     description: str,
     attempts: int,

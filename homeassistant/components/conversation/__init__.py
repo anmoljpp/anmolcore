@@ -1,5 +1,7 @@
 """Support for functionality to have conversations with Home Assistant."""
 
+from __future__ import annotations
+
 from collections.abc import Callable
 import logging
 from typing import Any, Literal

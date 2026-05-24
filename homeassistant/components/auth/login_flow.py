@@ -68,6 +68,8 @@ associate with an credential if "type" set to "link_user" in
 }
 """
 
+from __future__ import annotations
+
 from collections.abc import Callable
 from http import HTTPStatus
 from ipaddress import ip_address

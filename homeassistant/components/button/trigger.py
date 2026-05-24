@@ -1,5 +1,7 @@
 """Provides triggers for buttons."""
 
+from __future__ import annotations
+
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.automation import DomainSpec
 from homeassistant.helpers.trigger import StatelessEntityTriggerBase, Trigger

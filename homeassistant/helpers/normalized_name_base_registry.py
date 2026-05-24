@@ -1,5 +1,7 @@
 """Provide a base class for registries that use a normalized name index."""
 
+from __future__ import annotations
+
 from dataclasses import dataclass, field
 from datetime import datetime
 from functools import lru_cache
@@ -29,9 +31,7 @@ def normalize_name(name: str) -> str:
     return name.casefold().replace(" ", "")
 
 
-class NormalizedNameBaseRegistryItems[_VT: NormalizedNameBaseRegistryEntry](
-    BaseRegistryItems[_VT]
-):
+class NormalizedNameBaseRegistryItems(BaseRegistryItems[_VT]):
     """Base container for normalized name registry items, maps key -> entry.
 
     Maintains an additional index:

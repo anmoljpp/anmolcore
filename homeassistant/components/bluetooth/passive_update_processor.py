@@ -1,5 +1,7 @@
 """Passive update processors for the Bluetooth integration."""
 
+from __future__ import annotations
+
 import dataclasses
 from datetime import timedelta
 from functools import cache
@@ -126,7 +128,7 @@ def serialize_entity_description(description: EntityDescription) -> dict[str, An
 
 
 @dataclasses.dataclass(slots=True, frozen=False)
-class PassiveBluetoothDataUpdate[_T]:
+class PassiveBluetoothDataUpdate(Generic[_T]):
     """Generic bluetooth data."""
 
     devices: dict[str | None, DeviceInfo] = dataclasses.field(default_factory=dict)
@@ -279,7 +281,7 @@ async def async_setup(hass: HomeAssistant) -> None:
     )
 
 
-class PassiveBluetoothProcessorCoordinator[_DataT](BasePassiveBluetoothCoordinator):
+class PassiveBluetoothProcessorCoordinator(BasePassiveBluetoothCoordinator):
     """Passive bluetooth processor coordinator for bluetooth advertisements.
 
     The coordinator is responsible for dispatching the bluetooth data,
@@ -409,7 +411,7 @@ class PassiveBluetoothProcessorCoordinator[_DataT](BasePassiveBluetoothCoordinat
             processor.async_handle_update(update, was_available)
 
 
-class PassiveBluetoothDataProcessor[_T, _DataT]:
+class PassiveBluetoothDataProcessor(Generic[_T, _DataT]):
     """Passive bluetooth data processor for bluetooth advertisements.
 
     The processor is responsible for keeping track of the bluetooth data
@@ -625,9 +627,7 @@ class PassiveBluetoothDataProcessor[_T, _DataT]:
 
 
 # pylint: disable-next=home-assistant-enforce-class-module
-class PassiveBluetoothProcessorEntity[
-    _PassiveBluetoothDataProcessorT: PassiveBluetoothDataProcessor[Any, Any]
-](Entity):
+class PassiveBluetoothProcessorEntity(Entity):
     """A class for entities using PassiveBluetoothDataProcessor."""
 
     _attr_has_entity_name = True

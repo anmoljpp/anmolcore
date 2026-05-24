@@ -1,5 +1,7 @@
 """Component to configure Home Assistant via an API."""
 
+from __future__ import annotations
+
 import asyncio
 from collections.abc import Callable, Coroutine
 from http import HTTPStatus
@@ -20,9 +22,7 @@ from homeassistant.util.yaml.loader import JSON_TYPE
 from .const import ACTION_CREATE_UPDATE, ACTION_DELETE
 
 
-class BaseEditConfigView[_DataT: (dict[str, dict[str, Any]], list[dict[str, Any]])](
-    HomeAssistantView
-):
+class BaseEditConfigView(HomeAssistantView):
     """Configure a Group endpoint."""
 
     def __init__(

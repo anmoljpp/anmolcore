@@ -1,5 +1,7 @@
 """Base extension class for Home Assistant template extensions."""
 
+from __future__ import annotations
+
 from collections.abc import Callable
 from dataclasses import dataclass
 from functools import wraps
@@ -35,7 +37,7 @@ class TemplateFunction:
     )
 
 
-def _pass_context[**_P, _R](
+def _pass_context(
     func: Callable[Concatenate[Any, _P], _R],
     jinja_context: Callable[
         [Callable[Concatenate[Any, _P], _R]],

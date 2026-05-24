@@ -1,5 +1,7 @@
 """asyncio loop utilities."""
 
+from __future__ import annotations
+
 from collections.abc import Callable
 import functools
 from functools import cache
@@ -178,7 +180,7 @@ def _dev_help_message(what: str) -> str:
     )
 
 
-def protect_loop[**_P, _R](
+def protect_loop(
     func: Callable[_P, _R],
     loop_thread_id: int,
     strict: bool = True,

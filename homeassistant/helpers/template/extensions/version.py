@@ -1,5 +1,7 @@
 """Version functions for Home Assistant templates."""
 
+from __future__ import annotations
+
 from typing import TYPE_CHECKING
 
 from awesomeversion import AwesomeVersion

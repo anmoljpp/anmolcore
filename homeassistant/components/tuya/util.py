@@ -1,5 +1,7 @@
 """Utility methods for the Tuya integration."""
 
+from __future__ import annotations
+
 from tuya_device_handlers import TUYA_QUIRKS_REGISTRY
 from tuya_sharing import CustomerDevice
 

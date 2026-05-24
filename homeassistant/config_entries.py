@@ -1,5 +1,7 @@
 """Manage config entries in Home Assistant."""
 
+from __future__ import annotations
+
 import asyncio
 from collections import UserDict, defaultdict
 from collections.abc import (
@@ -21,7 +23,8 @@ from functools import cache
 import logging
 from random import randint
 from types import MappingProxyType
-from typing import TYPE_CHECKING, Any, Self, TypedDict, cast
+from typing import TYPE_CHECKING, Any, Generic, Self, TypedDict, cast, TypeAlias
+from typing_extensions import TypeVar
 
 from async_interrupt import interrupt
 from propcache.api import cached_property
@@ -265,7 +268,7 @@ class OperationNotAllowed(ConfigError):
     """Raised when a config entry operation is not allowed."""
 
 
-type UpdateListenerType = Callable[
+UpdateListenerType: TypeAlias = Callable[
     [HomeAssistant, ConfigEntry], Coroutine[Any, Any, None]
 ]
 
@@ -386,7 +389,10 @@ class ConfigSubentry:
         }
 
 
-class ConfigEntry[_DataT = Any]:
+_DataT = TypeVar("_DataT", default=Any)
+
+
+class ConfigEntry(Generic[_DataT]):
     """Hold a configuration entry."""
 
     entry_id: str
@@ -891,7 +897,7 @@ class ConfigEntry[_DataT = Any]:
             )
 
         # pylint: disable-next=broad-except
-        except SystemExit, Exception:
+        except (SystemExit, Exception):
             logger.exception(
                 "Error setting up entry %s for %s", self.title, integration.domain
             )
@@ -1347,7 +1353,7 @@ class ConfigEntry[_DataT = Any]:
         )
 
     @callback
-    def async_create_task[_R](
+    def async_create_task(
         self,
         hass: HomeAssistant,
         target: Coroutine[Any, Any, _R],
@@ -1371,7 +1377,7 @@ class ConfigEntry[_DataT = Any]:
         return task
 
     @callback
-    def async_create_background_task[_R](
+    def async_create_background_task(
         self,
         hass: HomeAssistant,
         target: Coroutine[Any, Any, _R],

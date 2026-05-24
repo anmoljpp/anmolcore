@@ -1,5 +1,7 @@
 """Provide a way to connect entities belonging to one device."""
 
+from __future__ import annotations
+
 import asyncio
 from collections import defaultdict
 from collections.abc import Iterable, Mapping
@@ -8,7 +10,7 @@ from enum import StrEnum
 from functools import lru_cache
 import logging
 import time
-from typing import TYPE_CHECKING, Any, Literal, TypedDict, Unpack
+from typing import TYPE_CHECKING, Any, Literal, TypedDict, Unpack, TypeAlias
 
 import attr
 from yarl import URL
@@ -167,7 +169,7 @@ class _EventDeviceRegistryUpdatedData_Update(TypedDict):
     changes: dict[str, Any]
 
 
-type EventDeviceRegistryUpdatedData = (
+EventDeviceRegistryUpdatedData: TypeAlias = (
     _EventDeviceRegistryUpdatedData_Create
     | _EventDeviceRegistryUpdatedData_Remove
     | _EventDeviceRegistryUpdatedData_Update
@@ -438,7 +440,7 @@ class DeviceEntry:
         try:
             dict_repr = self.dict_repr
             return json_bytes(dict_repr)
-        except ValueError, TypeError:
+        except (ValueError, TypeError):
             _LOGGER.error(
                 "Unable to serialize entry %s to JSON. Bad data found at %s",
                 self.id,
@@ -682,9 +684,7 @@ class DeviceRegistryStore(storage.Store[dict[str, list[dict[str, Any]]]]):
         return old_data
 
 
-class DeviceRegistryItems[_EntryTypeT: (DeviceEntry, DeletedDeviceEntry)](
-    BaseRegistryItems[_EntryTypeT]
-):
+class DeviceRegistryItems(BaseRegistryItems[_EntryTypeT]):
     """Container for device registry items, maps device id -> entry.
 
     Maintains two additional indexes:
@@ -1574,7 +1574,7 @@ class DeviceRegistry(BaseRegistry[dict[str, list[dict[str, Any]]]]):
                 )
 
             # Introduced in 0.111
-            def get_optional_enum[_EnumT: StrEnum](
+            def get_optional_enum(
                 cls: type[_EnumT], value: str | None, undefined: bool
             ) -> _EnumT | UndefinedType | None:
                 """Convert string to the passed enum, UNDEFINED or None."""

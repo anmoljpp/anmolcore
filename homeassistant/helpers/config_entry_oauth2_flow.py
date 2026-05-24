@@ -6,6 +6,8 @@ This module exists of the following parts:
 
 """
 
+from __future__ import annotations
+
 from abc import ABC, ABCMeta, abstractmethod
 import asyncio
 from asyncio import Lock
@@ -257,7 +259,7 @@ class LocalOAuth2Implementation(AbstractOAuth2Implementation):
                         if error_description
                         else error_code
                     )
-                except ClientError, ValueError, AttributeError:
+                except (ClientError, ValueError, AttributeError):
                     detail = error_body[:200] if error_body else "unknown error"
                 _LOGGER.debug(
                     "Token request for %s failed (%s): %s",

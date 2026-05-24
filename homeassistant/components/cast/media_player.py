@@ -1,5 +1,7 @@
 """Provide functionality to interact with Cast devices on the network."""
 
+from __future__ import annotations
+
 from collections.abc import Callable
 from contextlib import suppress
 from datetime import datetime
@@ -85,7 +87,7 @@ CAST_SPLASH = "https://www.home-assistant.io/images/cast/splash.png"
 type _FuncType[_T, **_P, _R] = Callable[Concatenate[_T, _P], _R]
 
 
-def api_error[_CastDeviceT: CastDevice, **_P, _R](
+def api_error(
     func: _FuncType[_CastDeviceT, _P, _R],
 ) -> _FuncType[_CastDeviceT, _P, _R]:
     """Handle PyChromecastError and reraise a HomeAssistantError."""

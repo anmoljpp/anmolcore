@@ -1,5 +1,7 @@
 """Temperature helpers for Home Assistant."""
 
+from __future__ import annotations
+
 from numbers import Number
 
 from homeassistant.const import PRECISION_HALVES, PRECISION_TENTHS

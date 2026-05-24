@@ -1,5 +1,7 @@
 """Models for Recorder."""
 
+from __future__ import annotations
+
 from .context import (
     bytes_to_ulid_or_none,
     bytes_to_uuid_hex_or_none,

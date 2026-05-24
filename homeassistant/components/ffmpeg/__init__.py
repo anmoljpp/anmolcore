@@ -1,5 +1,7 @@
 """Support for FFmpeg."""
 
+from __future__ import annotations
+
 import asyncio
 import re
 
@@ -140,7 +142,7 @@ class FFmpegManager:
         return CONTENT_TYPE_MULTIPART.format("ffserver")
 
 
-class FFmpegBase[_HAFFmpegT: HAFFmpeg](Entity):  # pylint: disable=home-assistant-enforce-class-module
+class FFmpegBase(Entity):  # pylint: disable=home-assistant-enforce-class-module
     """Interface object for FFmpeg."""
 
     _attr_should_poll = False

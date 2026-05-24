@@ -1,5 +1,7 @@
 """All methods needed to bootstrap a Home Assistant instance."""
 
+from __future__ import annotations
+
 import asyncio
 from collections import defaultdict
 from collections.abc import Awaitable, Callable, Generator, Mapping

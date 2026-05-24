@@ -1,5 +1,7 @@
 """Component to allow for providing device or service updates."""
 
+from __future__ import annotations
+
 from datetime import timedelta
 from enum import StrEnum
 from functools import lru_cache

@@ -1,6 +1,8 @@
 """Implementation of a ring buffer using bytearray."""
 
 
+from __future__ import annotations
+
 class RingBuffer:
     """Basic ring buffer using a bytearray.
 

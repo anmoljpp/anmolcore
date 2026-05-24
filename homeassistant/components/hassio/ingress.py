@@ -1,5 +1,7 @@
 """Hass.io Add-on ingress service."""
 
+from __future__ import annotations
+
 import asyncio
 from collections.abc import Iterable
 from functools import lru_cache

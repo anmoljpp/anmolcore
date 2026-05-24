@@ -1,5 +1,7 @@
 """Helpers for the logger integration."""
 
+from __future__ import annotations
+
 from collections import defaultdict
 from collections.abc import Mapping
 import contextlib

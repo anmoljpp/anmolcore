@@ -1,5 +1,7 @@
 """Event parser and human readable log generator."""
 
+from __future__ import annotations
+
 from collections.abc import Callable, Mapping
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Any, Final, NamedTuple, cast, final

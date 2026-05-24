@@ -4,7 +4,7 @@ Does this with help of the integration. Looks at significant_change.py
 platform for a function `async_check_significant_change`:
 
 ```python
-from typing import Optional
+from typing import Optional, TypeAlias
 from homeassistant.core import HomeAssistant
 
 async def async_check_significant_change(
@@ -27,6 +27,8 @@ The following cases will never be passed to your function:
 - state adding/removing
 """
 
+from __future__ import annotations
+
 from collections.abc import Callable, Mapping
 import math
 from types import MappingProxyType
@@ -40,7 +42,7 @@ from .integration_platform import async_process_integration_platforms
 
 PLATFORM = "significant_change"
 DATA_FUNCTIONS: HassKey[dict[str, CheckTypeFunc]] = HassKey("significant_change")
-type CheckTypeFunc = Callable[
+CheckTypeFunc: TypeAlias = Callable[
     [
         HomeAssistant,
         str,
@@ -51,7 +53,7 @@ type CheckTypeFunc = Callable[
     bool | None,
 ]
 
-type ExtraCheckTypeFunc = Callable[
+ExtraCheckTypeFunc: TypeAlias = Callable[
     [
         HomeAssistant,
         str,

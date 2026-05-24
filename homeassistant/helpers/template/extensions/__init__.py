@@ -1,5 +1,7 @@
 """Home Assistant template extensions."""
 
+from __future__ import annotations
+
 from .areas import AreaExtension
 from .base64 import Base64Extension
 from .collection import CollectionExtension

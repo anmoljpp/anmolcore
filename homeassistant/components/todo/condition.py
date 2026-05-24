@@ -1,5 +1,7 @@
 """Provides conditions for to-do lists."""
 
+from __future__ import annotations
+
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.condition import (
     Condition,

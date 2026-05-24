@@ -1,10 +1,12 @@
 """Provide a way to categorize things within a defined scope."""
 
+from __future__ import annotations
+
 from collections.abc import Iterable
 import dataclasses
 from dataclasses import dataclass, field
 from datetime import datetime
-from typing import Any, Literal, TypedDict
+from typing import Any, Literal, TypedDict, TypeAlias
 
 from homeassistant.core import Event, HomeAssistant, callback
 from homeassistant.util.dt import utc_from_timestamp, utcnow
@@ -50,7 +52,7 @@ class EventCategoryRegistryUpdatedData(TypedDict):
     category_id: str
 
 
-type EventCategoryRegistryUpdated = Event[EventCategoryRegistryUpdatedData]
+EventCategoryRegistryUpdated: TypeAlias = Event[EventCategoryRegistryUpdatedData]
 
 
 @dataclass(slots=True, kw_only=True, frozen=True)

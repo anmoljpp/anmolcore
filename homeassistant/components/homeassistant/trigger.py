@@ -1,5 +1,7 @@
 """Home Assistant trigger dispatcher."""
 
+from __future__ import annotations
+
 from typing import cast
 
 from homeassistant.const import CONF_PLATFORM

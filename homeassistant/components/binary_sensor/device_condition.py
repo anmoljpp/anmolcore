@@ -1,5 +1,7 @@
 """Implement device conditions for binary sensor."""
 
+from __future__ import annotations
+
 import voluptuous as vol
 
 from homeassistant.components.device_automation import CONF_IS_OFF, CONF_IS_ON

@@ -1,5 +1,7 @@
 """Set up Supervisor services."""
 
+from __future__ import annotations
+
 from collections.abc import Awaitable, Callable
 import json
 import re

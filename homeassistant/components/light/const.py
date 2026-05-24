@@ -1,5 +1,7 @@
 """Provides constants for lights."""
 
+from __future__ import annotations
+
 from datetime import timedelta
 from enum import IntFlag, StrEnum
 from typing import TYPE_CHECKING

@@ -1,5 +1,7 @@
 """Platform allowing several button entities to be grouped into one single button."""
 
+from __future__ import annotations
+
 from typing import Any
 
 import voluptuous as vol

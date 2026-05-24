@@ -1,5 +1,7 @@
 """Helpers for working with enums."""
 
+from __future__ import annotations
+
 from collections.abc import Callable
 import contextlib
 from enum import Enum
@@ -16,7 +18,7 @@ else:
 
 
 @lru_cache
-def try_parse_enum[_EnumT: Enum](cls: type[_EnumT], value: Any) -> _EnumT | None:
+def try_parse_enum(cls: type[_EnumT], value: Any) -> _EnumT | None:
     """Try to parse the value into an Enum.
 
     Return None if parsing fails.

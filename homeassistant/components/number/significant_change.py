@@ -1,5 +1,7 @@
 """Helper to test significant Number state changes."""
 
+from __future__ import annotations
+
 from typing import Any
 
 from homeassistant.const import (

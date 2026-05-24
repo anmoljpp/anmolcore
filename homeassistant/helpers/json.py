@@ -1,5 +1,7 @@
 """Helpers to help with encoding Home Assistant objects in JSON."""
 
+from __future__ import annotations
+
 from collections import deque
 from collections.abc import Callable
 import datetime
@@ -233,7 +235,7 @@ def find_paths_unserializable_data(
         try:
             dump(obj)
             continue
-        except ValueError, TypeError:
+        except (ValueError, TypeError):
             pass
 
         # We convert objects with as_dict to their dict values

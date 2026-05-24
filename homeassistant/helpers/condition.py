@@ -1,5 +1,7 @@
 """Offer reusable conditions."""
 
+from __future__ import annotations
+
 import abc
 from collections import deque
 from collections.abc import Callable, Container, Coroutine, Generator, Iterable, Mapping
@@ -15,6 +17,7 @@ from typing import (
     TYPE_CHECKING,
     Any,
     ClassVar,
+    TypeAlias,
     Final,
     Literal,
     Never,
@@ -771,7 +774,7 @@ class EntityNumericalConditionBase(EntityConditionBase):
             return None
         try:
             return float(entity_state.state)
-        except TypeError, ValueError:
+        except (TypeError, ValueError):
             # Entity state is not a valid number
             return None
 
@@ -793,7 +796,7 @@ class EntityNumericalConditionBase(EntityConditionBase):
         """Check if the state is within the specified range."""
         try:
             value = float(self._get_tracked_value(entity_state))
-        except TypeError, ValueError:
+        except (TypeError, ValueError):
             return False
 
         if self._threshold_type == NumericThresholdType.ABOVE:
@@ -887,7 +890,7 @@ class EntityNumericalConditionWithUnitBase(EntityNumericalConditionBase):
             return None
         try:
             value = float(entity_state.state)
-        except TypeError, ValueError:
+        except (TypeError, ValueError):
             # Entity state is not a valid number
             return None
 
@@ -912,7 +915,7 @@ class EntityNumericalConditionWithUnitBase(EntityNumericalConditionBase):
 
         try:
             value = float(raw_value)
-        except TypeError, ValueError:
+        except (TypeError, ValueError):
             return None
 
         try:
@@ -963,8 +966,8 @@ class ConditionCheckParams(TypedDict, total=False):
     variables: TemplateVarsType
 
 
-type ConditionCheckerType = Callable[[HomeAssistant, TemplateVarsType], bool]
-type ConditionCheckerTypeOptional = Callable[
+ConditionCheckerType: TypeAlias = Callable[[HomeAssistant, TemplateVarsType], bool]
+ConditionCheckerTypeOptional: TypeAlias = Callable[
     [HomeAssistant, TemplateVarsType], bool | None
 ]
 

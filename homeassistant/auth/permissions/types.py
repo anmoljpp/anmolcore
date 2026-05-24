@@ -1,20 +1,23 @@
+from __future__ import annotations
+
+from typing import TypeAlias
 """Common code for permissions."""
 
 from collections.abc import Mapping
 
 # MyPy doesn't support recursion yet. So writing it out as far as we need.
 
-type ValueType = (
+ValueType: TypeAlias = (
     # Example: entities.all = { read: true, control: true }
     Mapping[str, bool] | bool | None
 )
 
 # Example: entities.domains = { light: … }
-type SubCategoryDict = Mapping[str, ValueType]
+SubCategoryDict: TypeAlias = Mapping[str, ValueType]
 
-type SubCategoryType = SubCategoryDict | bool | None
+SubCategoryType: TypeAlias = SubCategoryDict | bool | None
 
-type CategoryType = (
+CategoryType: TypeAlias = (
     # Example: entities.domains
     Mapping[str, SubCategoryType]
     # Example: entities.all
@@ -24,4 +27,4 @@ type CategoryType = (
 )
 
 # Example: { entities: … }
-type PolicyType = Mapping[str, CategoryType]
+PolicyType: TypeAlias = Mapping[str, CategoryType]

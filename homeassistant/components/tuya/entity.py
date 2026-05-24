@@ -1,5 +1,7 @@
 """Tuya Home Assistant Base Device Model."""
 
+from __future__ import annotations
+
 from typing import Any
 
 from tuya_device_handlers.device_wrapper import DeviceWrapper
@@ -90,13 +92,13 @@ class TuyaEntity(Entity):
             self.device_manager.send_commands, self.device.id, commands
         )
 
-    def _read_wrapper[T](self, wrapper: DeviceWrapper[T] | None) -> T | None:
+    def _read_wrapper(self, wrapper: DeviceWrapper[T] | None) -> T | None:
         """Read the wrapper device status."""
         if wrapper is None:
             return None
         return wrapper.read_device_status(self.device)
 
-    async def _async_send_wrapper_updates[T](
+    async def _async_send_wrapper_updates(
         self, wrapper: DeviceWrapper[T] | None, value: T
     ) -> None:
         """Send command to the device."""

@@ -1,5 +1,7 @@
 """Provides triggers for alarm control panels."""
 
+from __future__ import annotations
+
 from homeassistant.core import HomeAssistant
 from homeassistant.exceptions import HomeAssistantError
 from homeassistant.helpers.automation import DomainSpec

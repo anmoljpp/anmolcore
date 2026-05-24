@@ -1,5 +1,7 @@
 """Decorator for view methods to help with data validation."""
 
+from __future__ import annotations
+
 from collections.abc import Awaitable, Callable, Coroutine
 from functools import wraps
 from http import HTTPStatus
@@ -35,7 +37,7 @@ class RequestDataValidator:
         self._schema = schema
         self._allow_empty = allow_empty
 
-    def __call__[_HassViewT: HomeAssistantView, **_P](
+    def __call__(
         self,
         method: Callable[
             Concatenate[_HassViewT, web.Request, dict[str, Any], _P],

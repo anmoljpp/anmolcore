@@ -1,5 +1,7 @@
 """Template context management for Home Assistant."""
 
+from __future__ import annotations
+
 from contextlib import AbstractContextManager
 from contextvars import ContextVar
 from types import TracebackType

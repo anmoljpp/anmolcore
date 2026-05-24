@@ -1,5 +1,7 @@
 """Provide persistent configuration for the hassio integration."""
 
+from __future__ import annotations
+
 from dataclasses import dataclass, replace
 from typing import Required, Self, TypedDict
 

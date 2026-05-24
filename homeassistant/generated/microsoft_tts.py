@@ -3,6 +3,8 @@
 To update, run python3 -m script.microsoft_tts
 """
 
+from __future__ import annotations
+
 SUPPORTED_LANGUAGES = {
     "af-za",
     "am-et",

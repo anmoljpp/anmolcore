@@ -1,5 +1,7 @@
 """Deprecation helpers for Home Assistant."""
 
+from __future__ import annotations
+
 from collections.abc import Callable
 from contextlib import suppress
 from enum import EnumType, IntEnum, IntFlag, StrEnum, _EnumDict
@@ -9,7 +11,7 @@ import logging
 from typing import Any, NamedTuple, cast
 
 
-def deprecated_substitute[_ObjectT: object](
+def deprecated_substitute(
     substitute_name: str,
 ) -> Callable[[Callable[[_ObjectT], Any]], Callable[[_ObjectT], Any]]:
     """Help migrate properties to new names.
@@ -86,7 +88,7 @@ def get_deprecated(
     return config.get(new_name, default)
 
 
-def deprecated_class[_T](
+def deprecated_class(
     replacement: str, *, breaks_in_ha_version: str | None = None
 ) -> Callable[[type[_T]], type[_T]]:
     """Mark class as deprecated and provide a replacement class to be used instead.
@@ -128,7 +130,7 @@ def deprecated_class[_T](
     return deprecated_decorator
 
 
-def deprecated_function[**_P, _R](
+def deprecated_function(
     replacement: str, *, breaks_in_ha_version: str | None = None
 ) -> Callable[[Callable[_P, _R]], Callable[_P, _R]]:
     """Mark function as deprecated and provide a replacement to be used instead.
@@ -153,7 +155,7 @@ def deprecated_function[**_P, _R](
     return deprecated_decorator
 
 
-def deprecated_hass_argument[**_P, _T](
+def deprecated_hass_argument(
     breaks_in_ha_version: str | None = None,
 ) -> Callable[[Callable[_P, _T]], Callable[_P, _T]]:
     """Decorate function to indicate that first argument hass will be ignored."""
@@ -291,7 +293,7 @@ def _print_deprecation_warning_internal_impl(
             )
 
 
-class DeprecatedConstant[T](NamedTuple):
+class DeprecatedConstant(NamedTuple):
     """Deprecated constant."""
 
     value: T
@@ -299,14 +301,14 @@ class DeprecatedConstant[T](NamedTuple):
     breaks_in_ha_version: str | None
 
 
-class DeprecatedConstantEnum[T: (StrEnum | IntEnum | IntFlag)](NamedTuple):
+class DeprecatedConstantEnum(NamedTuple):
     """Deprecated constant."""
 
     enum: T
     breaks_in_ha_version: str | None
 
 
-class DeprecatedAlias[T](NamedTuple):
+class DeprecatedAlias(NamedTuple):
     """Deprecated alias."""
 
     value: T
@@ -314,7 +316,7 @@ class DeprecatedAlias[T](NamedTuple):
     breaks_in_ha_version: str | None
 
 
-class DeferredDeprecatedAlias[T]:
+class DeferredDeprecatedAlias(Generic[T]):
     """Deprecated alias with deferred evaluation of the value."""
 
     def __init__(

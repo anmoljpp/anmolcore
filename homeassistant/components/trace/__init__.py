@@ -1,5 +1,7 @@
 """Support for script and automation tracing and debugging."""
 
+from __future__ import annotations
+
 import logging
 
 import voluptuous as vol

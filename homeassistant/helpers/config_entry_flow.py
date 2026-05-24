@@ -1,5 +1,7 @@
 """Helpers for data entry flows for config entries."""
 
+from __future__ import annotations
+
 from collections.abc import Awaitable, Callable
 import logging
 from typing import TYPE_CHECKING, Any, cast
@@ -25,7 +27,7 @@ type DiscoveryFunctionType[_R] = Callable[[HomeAssistant], _R]
 _LOGGER = logging.getLogger(__name__)
 
 
-class DiscoveryFlowHandler[_R: Awaitable[bool] | bool](config_entries.ConfigFlow):
+class DiscoveryFlowHandler(config_entries.ConfigFlow):
     """Handle a discovery config flow."""
 
     VERSION = 1

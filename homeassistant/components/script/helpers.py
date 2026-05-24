@@ -1,5 +1,7 @@
 """Helpers for automation integration."""
 
+from __future__ import annotations
+
 from homeassistant.components.blueprint import BLUEPRINT_SCHEMA, DomainBlueprints
 from homeassistant.const import SERVICE_RELOAD
 from homeassistant.core import HomeAssistant, callback

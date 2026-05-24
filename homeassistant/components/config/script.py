@@ -1,5 +1,7 @@
 """Provide configuration end points for scripts."""
 
+from __future__ import annotations
+
 from typing import Any
 
 from homeassistant.components.script import DOMAIN as SCRIPT_DOMAIN

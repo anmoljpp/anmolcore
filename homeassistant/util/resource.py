@@ -1,5 +1,7 @@
 """Resource management utilities for Home Assistant."""
 
+from __future__ import annotations
+
 import logging
 import os
 import resource

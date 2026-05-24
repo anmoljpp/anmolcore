@@ -1,5 +1,7 @@
 """Constants for sensor."""
 
+from __future__ import annotations
+
 from enum import StrEnum
 from typing import Final
 

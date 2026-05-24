@@ -1,5 +1,7 @@
 """Pluggable auth modules for Home Assistant."""
 
+from __future__ import annotations
+
 import logging
 import types
 from typing import Any
@@ -93,9 +95,7 @@ class MultiFactorAuthModule:
         raise NotImplementedError
 
 
-class SetupFlow[_MultiFactorAuthModuleT: MultiFactorAuthModule = MultiFactorAuthModule](
-    data_entry_flow.FlowHandler
-):
+class SetupFlow(data_entry_flow.FlowHandler):
     """Handler for the setup flow."""
 
     def __init__(

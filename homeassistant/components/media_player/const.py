@@ -1,5 +1,7 @@
 """Provides the constants needed for component."""
 
+from __future__ import annotations
+
 from enum import IntFlag, StrEnum
 
 from homeassistant.helpers.deprecation import EnumWithDeprecatedMembers

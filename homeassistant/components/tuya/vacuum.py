@@ -1,5 +1,7 @@
 """Support for Tuya Vacuums."""
 
+from __future__ import annotations
+
 from typing import Any
 
 from tuya_device_handlers.definition.vacuum import (

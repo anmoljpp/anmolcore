@@ -1,5 +1,7 @@
 """Constants for cover entity platform."""
 
+from __future__ import annotations
+
 from enum import IntFlag, StrEnum
 
 DOMAIN = "cover"

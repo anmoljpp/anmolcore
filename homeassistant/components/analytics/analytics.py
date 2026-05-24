@@ -1,5 +1,7 @@
 """Analytics helper class for the analytics integration."""
 
+from __future__ import annotations
+
 import asyncio
 from asyncio import timeout
 from collections.abc import Awaitable, Callable, Iterable, Mapping
@@ -8,7 +10,7 @@ from dataclasses import asdict as dataclass_asdict, dataclass, field
 from datetime import datetime
 import random
 import time
-from typing import Any, Protocol
+from typing import Any, Protocol, TypeAlias
 import uuid
 
 import aiohttp
@@ -103,7 +105,7 @@ from .const import (
 
 DATA_ANALYTICS_MODIFIERS = "analytics_modifiers"
 
-type AnalyticsModifier = Callable[
+AnalyticsModifier: TypeAlias = Callable[
     [HomeAssistant, AnalyticsInput], Awaitable[AnalyticsModifications]
 ]
 

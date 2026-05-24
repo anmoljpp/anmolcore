@@ -1,5 +1,7 @@
 """Support managing States."""
 
+from __future__ import annotations
+
 from collections.abc import Sequence
 from typing import Any, cast
 

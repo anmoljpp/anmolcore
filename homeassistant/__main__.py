@@ -1,5 +1,7 @@
 """Start Home Assistant."""
 
+from __future__ import annotations
+
 import argparse
 from contextlib import suppress
 import faulthandler

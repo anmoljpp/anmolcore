@@ -1,5 +1,7 @@
 """Constants for the Assist pipeline integration."""
 
+from __future__ import annotations
+
 from pathlib import Path
 
 DOMAIN = "assist_pipeline"

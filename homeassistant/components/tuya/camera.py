@@ -1,5 +1,7 @@
 """Support for Tuya cameras."""
 
+from __future__ import annotations
+
 from tuya_device_handlers.definition.camera import (
     CameraDefinition,
     get_default_definition,

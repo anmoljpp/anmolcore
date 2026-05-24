@@ -1,5 +1,7 @@
 """The Backup integration."""
 
+from __future__ import annotations
+
 from homeassistant.core import HomeAssistant, ServiceCall
 from homeassistant.helpers.hassio import is_hassio
 from homeassistant.helpers.service import async_register_admin_service

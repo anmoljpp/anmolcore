@@ -1,5 +1,7 @@
 """Queries for logbook."""
 
+from __future__ import annotations
+
 from collections.abc import Collection
 from datetime import datetime as dt
 

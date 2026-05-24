@@ -1,5 +1,7 @@
 """Support for Tuya event entities."""
 
+from __future__ import annotations
+
 from dataclasses import dataclass
 
 from tuya_device_handlers.definition.event import (

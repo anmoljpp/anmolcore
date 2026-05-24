@@ -1,8 +1,10 @@
 """Helpers for sun events."""
 
+from __future__ import annotations
+
 from collections.abc import Callable
 import datetime
-from typing import TYPE_CHECKING, Any, cast
+from typing import TYPE_CHECKING, Any, cast, TypeAlias
 
 from homeassistant.const import SUN_EVENT_SUNRISE, SUN_EVENT_SUNSET
 from homeassistant.core import HomeAssistant, callback
@@ -19,7 +21,7 @@ DATA_LOCATION_CACHE: HassKey[
 
 ELEVATION_AGNOSTIC_EVENTS = ("noon", "midnight")
 
-type _AstralSunEventCallable = Callable[..., datetime.datetime]
+_AstralSunEventCallable: TypeAlias = Callable[..., datetime.datetime]
 
 
 @callback

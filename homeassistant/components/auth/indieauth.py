@@ -1,5 +1,7 @@
 """Helpers to resolve client ID/secret."""
 
+from __future__ import annotations
+
 from html.parser import HTMLParser
 from ipaddress import ip_address
 import logging

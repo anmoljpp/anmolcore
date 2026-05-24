@@ -4,6 +4,8 @@ It shows list of users if access from trusted network.
 Abort login flow if not access from trusted network.
 """
 
+from __future__ import annotations
+
 from collections.abc import Mapping
 from ipaddress import (
     IPv4Address,
@@ -13,7 +15,7 @@ from ipaddress import (
     ip_address,
     ip_network,
 )
-from typing import Any, cast
+from typing import Any, cast, TypeAlias
 
 import voluptuous as vol
 
@@ -32,8 +34,8 @@ from ..models import (
 )
 from . import AUTH_PROVIDER_SCHEMA, AUTH_PROVIDERS, AuthProvider, LoginFlow
 
-type IPAddress = IPv4Address | IPv6Address
-type IPNetwork = IPv4Network | IPv6Network
+IPAddress: TypeAlias = IPv4Address | IPv6Address
+IPNetwork: TypeAlias = IPv4Network | IPv6Network
 
 CONF_TRUSTED_NETWORKS = "trusted_networks"
 CONF_TRUSTED_USERS = "trusted_users"

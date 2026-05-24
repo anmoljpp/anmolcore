@@ -1,10 +1,13 @@
+from __future__ import annotations
+
+from typing import TypeAlias
 """MQTT Discovery data."""
 
 from dataclasses import dataclass
 
 from homeassistant.data_entry_flow import BaseServiceInfo
 
-type ReceivePayloadType = str | bytes | bytearray
+ReceivePayloadType: TypeAlias = str | bytes | bytearray
 
 
 @dataclass(slots=True)

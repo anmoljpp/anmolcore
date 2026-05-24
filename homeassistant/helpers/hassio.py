@@ -1,5 +1,7 @@
 """Hass.io helper."""
 
+from __future__ import annotations
+
 import os
 
 from homeassistant.core import HomeAssistant, callback

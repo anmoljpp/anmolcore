@@ -1,5 +1,7 @@
 """Helper to deal with YAML + storage."""
 
+from __future__ import annotations
+
 from abc import abstractmethod
 import asyncio
 from collections.abc import Awaitable, Callable, Coroutine, Iterable
@@ -9,7 +11,7 @@ from hashlib import md5
 from itertools import groupby
 import logging
 from operator import attrgetter
-from typing import Any, TypedDict
+from typing import Any, TypedDict, TypeAlias
 
 import voluptuous as vol
 from voluptuous.humanize import humanize_error
@@ -50,7 +52,7 @@ class CollectionChange:
     item_hash: str | None = None
 
 
-type ChangeListener = Callable[
+ChangeListener: TypeAlias = Callable[
     [
         # Change type
         str,
@@ -62,7 +64,7 @@ type ChangeListener = Callable[
     Awaitable[None],
 ]
 
-type ChangeSetListener = Callable[[Iterable[CollectionChange]], Awaitable[None]]
+ChangeSetListener: TypeAlias = Callable[[Iterable[CollectionChange]], Awaitable[None]]
 
 
 class CollectionError(HomeAssistantError):
@@ -124,7 +126,7 @@ class CollectionEntity(Entity):
         """Handle updated configuration."""
 
 
-class ObservableCollection[_ItemT]:
+class ObservableCollection(Generic[_ItemT]):
     """Base collection type that can be observed."""
 
     def __init__(self, id_manager: IDManager | None) -> None:
@@ -231,9 +233,7 @@ class SerializedStorageCollection(TypedDict):
     items: list[dict[str, Any]]
 
 
-class StorageCollection[_ItemT, _StoreT: SerializedStorageCollection](
-    ObservableCollection[_ItemT]
-):
+class StorageCollection(ObservableCollection[_ItemT]):
     """Offer a CRUD interface on top of JSON storage."""
 
     def __init__(
@@ -443,7 +443,7 @@ _GROUP_BY_KEY = attrgetter("change_type")
 
 
 @dataclass(slots=True, frozen=True)
-class _CollectionLifeCycle[_EntityT: Entity = Entity]:
+class _CollectionLifeCycle(Generic[_EntityT]):
     """Life cycle for a collection of entities."""
 
     domain: str
@@ -518,7 +518,7 @@ class _CollectionLifeCycle[_EntityT: Entity = Entity]:
 
 
 @callback
-def sync_entity_lifecycle[_EntityT: Entity = Entity](
+def sync_entity_lifecycle(
     hass: HomeAssistant,
     domain: str,
     platform: str,
@@ -533,7 +533,7 @@ def sync_entity_lifecycle[_EntityT: Entity = Entity](
     ).async_setup()
 
 
-class StorageCollectionWebsocket[_StorageCollectionT: StorageCollection]:
+class StorageCollectionWebsocket(Generic[_StorageCollectionT]):
     """Class to expose storage collection management over websocket."""
 
     def __init__(

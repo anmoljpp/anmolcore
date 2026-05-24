@@ -1,5 +1,7 @@
 """WebSocket based API for Home Assistant."""
 
+from __future__ import annotations
+
 from typing import Final, cast
 
 from homeassistant.core import HomeAssistant, callback

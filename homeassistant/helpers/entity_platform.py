@@ -1,5 +1,7 @@
 """Class to manage the entities for a single platform."""
 
+from __future__ import annotations
+
 import asyncio
 from collections.abc import Awaitable, Callable, Coroutine, Iterable, Mapping
 from contextvars import ContextVar

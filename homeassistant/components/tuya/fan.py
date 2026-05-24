@@ -1,5 +1,7 @@
 """Support for Tuya Fan."""
 
+from __future__ import annotations
+
 from typing import Any
 
 from tuya_device_handlers.definition.fan import FanDefinition, get_default_definition

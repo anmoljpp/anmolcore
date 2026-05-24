@@ -1,3 +1,6 @@
+from __future__ import annotations
+
+from typing import TypeAlias
 """Coordinator for Home Assistant Backup integration."""
 
 from collections.abc import Callable
@@ -16,7 +19,7 @@ from .manager import (
     ManagerStateEvent,
 )
 
-type BackupConfigEntry = ConfigEntry[BackupDataUpdateCoordinator]
+BackupConfigEntry: TypeAlias = ConfigEntry[BackupDataUpdateCoordinator]
 
 
 @dataclass

@@ -3,6 +3,8 @@
 To update, run python3 -m script.amazon_polly
 """
 
+from __future__ import annotations
+
 from typing import Final
 
 SUPPORTED_ENGINES: Final[set[str]] = {

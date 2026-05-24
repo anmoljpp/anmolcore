@@ -1,5 +1,7 @@
 """Allow users to set and activate scenes."""
 
+from __future__ import annotations
+
 from collections.abc import Mapping, ValuesView
 import logging
 from typing import Any, NamedTuple, cast

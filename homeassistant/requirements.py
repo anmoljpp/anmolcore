@@ -1,5 +1,7 @@
 """Module to handle installing requirements."""
 
+from __future__ import annotations
+
 import asyncio
 from collections.abc import Iterable
 import contextlib

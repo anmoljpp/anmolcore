@@ -3,6 +3,8 @@
 Provides numeric combinations.
 """
 
+from __future__ import annotations
+
 from collections.abc import Callable
 from datetime import datetime
 import logging
@@ -435,7 +437,7 @@ class SensorGroup(GroupEntity, SensorEntity):
                             self.entity_id,
                         )
                     continue
-                except KeyError, HomeAssistantError:
+                except (KeyError, HomeAssistantError):
                     # This exception handling can be simplified
                     # once sensor entity doesn't allow incorrect unit of measurement
                     # with a device class, implementation see PR #107639

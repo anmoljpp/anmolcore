@@ -1,5 +1,7 @@
 """Support for script and automation tracing and debugging."""
 
+from __future__ import annotations
+
 from collections.abc import Mapping
 import logging
 from typing import Any

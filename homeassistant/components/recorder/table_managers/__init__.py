@@ -1,5 +1,7 @@
 """Managers for each table."""
 
+from __future__ import annotations
+
 from typing import TYPE_CHECKING, Any
 
 from lru import LRU
@@ -10,7 +12,7 @@ if TYPE_CHECKING:
     from ..core import Recorder
 
 
-class BaseTableManager[_DataT]:
+class BaseTableManager(Generic[_DataT]):
     """Base class for table managers."""
 
     _id_map: LRU[EventType[Any] | str, int]
@@ -51,7 +53,7 @@ class BaseTableManager[_DataT]:
         self._pending.clear()
 
 
-class BaseLRUTableManager[_DataT](BaseTableManager[_DataT]):
+class BaseLRUTableManager(BaseTableManager[_DataT]):
     """Base class for LRU table managers."""
 
     def __init__(self, recorder: Recorder, lru_size: int) -> None:

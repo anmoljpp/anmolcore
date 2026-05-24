@@ -1,5 +1,7 @@
 """Platform allowing several locks to be grouped into one lock."""
 
+from __future__ import annotations
+
 import logging
 from typing import Any
 

@@ -4,7 +4,9 @@ Custom for type checking. See stub file.
 """
 
 
-class HassKey[_T](str):
+from __future__ import annotations
+
+class HassKey(str):
     """Generic Hass key type.
 
     At runtime this is a generic subclass of str.
@@ -13,7 +15,7 @@ class HassKey[_T](str):
     __slots__ = ()
 
 
-class HassEntryKey[_T](str):
+class HassEntryKey(str):
     """Key type for integrations with config entries.
 
     At runtime this is a generic subclass of str.

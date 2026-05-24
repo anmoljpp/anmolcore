@@ -1,5 +1,7 @@
 """Component to interact with Hassbian tools."""
 
+from __future__ import annotations
+
 from typing import Any
 
 from aiohttp import web

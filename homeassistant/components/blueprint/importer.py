@@ -1,5 +1,7 @@
 """Import logic for blueprint."""
 
+from __future__ import annotations
+
 from contextlib import suppress
 from dataclasses import dataclass
 import html

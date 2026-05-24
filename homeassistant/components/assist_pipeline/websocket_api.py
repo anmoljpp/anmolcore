@@ -1,5 +1,7 @@
 """Assist pipeline Websocket API."""
 
+from __future__ import annotations
+
 import asyncio
 import base64
 from collections.abc import AsyncGenerator, Callable

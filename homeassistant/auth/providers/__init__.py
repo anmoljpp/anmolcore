@@ -1,5 +1,7 @@
 """Auth providers for Home Assistant."""
 
+from __future__ import annotations
+
 from collections.abc import Mapping
 import logging
 import types
@@ -190,9 +192,7 @@ async def load_auth_provider_module(
     return module
 
 
-class LoginFlow[_AuthProviderT: AuthProvider = AuthProvider](
-    FlowHandler[AuthFlowContext, AuthFlowResult, tuple[str, str]],
-):
+class LoginFlow(FlowHandler[AuthFlowContext, AuthFlowResult, tuple[str, str]],):
     """Handler for the login flow."""
 
     _flow_result = AuthFlowResult

@@ -1,5 +1,7 @@
 """Constants for the Tag integration."""
 
+from __future__ import annotations
+
 import logging
 
 DEVICE_ID = "device_id"

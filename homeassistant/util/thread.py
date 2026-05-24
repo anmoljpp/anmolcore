@@ -1,5 +1,7 @@
 """Threading util helpers."""
 
+from __future__ import annotations
+
 import ctypes
 import inspect
 import logging

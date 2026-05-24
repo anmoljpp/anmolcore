@@ -1,5 +1,7 @@
 """Support for Cover devices."""
 
+from __future__ import annotations
+
 from collections.abc import Callable
 from datetime import timedelta
 import functools as ft
@@ -407,7 +409,7 @@ class CoverEntity(Entity, cached_properties=CACHED_PROPERTIES_WITH_ATTR_):
         else:
             await self.async_close_cover_tilt(**kwargs)
 
-    def _get_toggle_function[**_P, _R](
+    def _get_toggle_function(
         self, fns: dict[str, Callable[_P, _R]]
     ) -> Callable[_P, _R]:
         # If we are opening or closing and we support stopping, then we should stop

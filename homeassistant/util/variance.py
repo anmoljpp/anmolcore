@@ -1,5 +1,7 @@
 """Util functions to help filter out similar results."""
 
+from __future__ import annotations
+
 from collections.abc import Callable
 from datetime import datetime, timedelta
 import functools
@@ -7,24 +9,24 @@ from typing import Any, overload
 
 
 @overload
-def ignore_variance[**_P](
+def ignore_variance(
     func: Callable[_P, int], ignored_variance: int
 ) -> Callable[_P, int]: ...
 
 
 @overload
-def ignore_variance[**_P](
+def ignore_variance(
     func: Callable[_P, float], ignored_variance: float
 ) -> Callable[_P, float]: ...
 
 
 @overload
-def ignore_variance[**_P](
+def ignore_variance(
     func: Callable[_P, datetime], ignored_variance: timedelta
 ) -> Callable[_P, datetime]: ...
 
 
-def ignore_variance[**_P, _R: (int, float, datetime)](
+def ignore_variance(
     func: Callable[_P, _R], ignored_variance: Any
 ) -> Callable[_P, _R]:
     """Wrap a function that returns old result if new result does not vary enough."""

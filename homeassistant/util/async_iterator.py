@@ -1,5 +1,7 @@
 """Async iterator utilities."""
 
+from __future__ import annotations
+
 import asyncio
 from collections.abc import AsyncIterator
 from concurrent.futures import CancelledError, Future

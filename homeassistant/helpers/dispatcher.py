@@ -1,5 +1,7 @@
 """Helpers for Home Assistant dispatcher & internal component/platform."""
 
+from __future__ import annotations
+
 from collections import defaultdict
 from collections.abc import Callable, Coroutine
 from functools import partial
@@ -33,7 +35,7 @@ type _DispatcherDataType[*_Ts] = dict[
 
 
 @overload
-def dispatcher_connect[*_Ts](
+def dispatcher_connect(
     hass: HomeAssistant, signal: SignalType[*_Ts], target: Callable[[*_Ts], None]
 ) -> Callable[[], None]: ...
 
@@ -44,7 +46,7 @@ def dispatcher_connect(
 ) -> Callable[[], None]: ...
 
 
-def dispatcher_connect[*_Ts](  # type: ignore[misc]
+def dispatcher_connect(  # type: ignore[misc]
     hass: HomeAssistant,
     signal: SignalType[*_Ts],
     target: Callable[[*_Ts], None],
@@ -62,7 +64,7 @@ def dispatcher_connect[*_Ts](  # type: ignore[misc]
 
 
 @callback
-def _async_remove_dispatcher[*_Ts](
+def _async_remove_dispatcher(
     dispatchers: _DispatcherDataType[*_Ts],
     signal: SignalType[*_Ts] | str,
     target: Callable[[*_Ts], Any] | Callable[..., Any],
@@ -75,7 +77,7 @@ def _async_remove_dispatcher[*_Ts](
         # to prevent memory leaks
         if not signal_dispatchers:
             del dispatchers[signal]
-    except KeyError, ValueError:
+    except (KeyError, ValueError):
         # KeyError is key target listener did not exist
         # ValueError if listener did not exist within signal
         _LOGGER.warning("Unable to remove unknown dispatcher %s", target)
@@ -83,7 +85,7 @@ def _async_remove_dispatcher[*_Ts](
 
 @overload
 @callback
-def async_dispatcher_connect[*_Ts](
+def async_dispatcher_connect(
     hass: HomeAssistant, signal: SignalType[*_Ts], target: Callable[[*_Ts], Any]
 ) -> Callable[[], None]: ...
 
@@ -96,7 +98,7 @@ def async_dispatcher_connect(
 
 
 @callback
-def async_dispatcher_connect[*_Ts](
+def async_dispatcher_connect(
     hass: HomeAssistant,
     signal: SignalType[*_Ts] | str,
     target: Callable[[*_Ts], Any] | Callable[..., Any],
@@ -117,7 +119,7 @@ def async_dispatcher_connect[*_Ts](
 
 
 @overload
-def dispatcher_send[*_Ts](
+def dispatcher_send(
     hass: HomeAssistant, signal: SignalType[*_Ts], *args: *_Ts
 ) -> None: ...
 
@@ -126,14 +128,14 @@ def dispatcher_send[*_Ts](
 def dispatcher_send(hass: HomeAssistant, signal: str, *args: Any) -> None: ...
 
 
-def dispatcher_send[*_Ts](  # type: ignore[misc]
+def dispatcher_send(  # type: ignore[misc]
     hass: HomeAssistant, signal: SignalType[*_Ts], *args: *_Ts
 ) -> None:
     """Send signal and data."""
     hass.loop.call_soon_threadsafe(async_dispatcher_send_internal, hass, signal, *args)
 
 
-def _format_err[*_Ts](
+def _format_err(
     signal: SignalType[*_Ts] | str,
     target: Callable[[*_Ts], Any] | Callable[..., Any],
     *args: Any,
@@ -147,7 +149,7 @@ def _format_err[*_Ts](
     )
 
 
-def _generate_job[*_Ts](
+def _generate_job(
     signal: SignalType[*_Ts] | str, target: Callable[[*_Ts], Any] | Callable[..., Any]
 ) -> HassJob[..., Coroutine[Any, Any, None] | None]:
     """Generate a HassJob for a signal and target."""
@@ -169,7 +171,7 @@ def _generate_job[*_Ts](
 
 @overload
 @callback
-def async_dispatcher_send[*_Ts](
+def async_dispatcher_send(
     hass: HomeAssistant, signal: SignalType[*_Ts], *args: *_Ts
 ) -> None: ...
 
@@ -180,7 +182,7 @@ def async_dispatcher_send(hass: HomeAssistant, signal: str, *args: Any) -> None:
 
 
 @callback
-def async_dispatcher_send[*_Ts](
+def async_dispatcher_send(
     hass: HomeAssistant, signal: SignalType[*_Ts] | str, *args: *_Ts
 ) -> None:
     """Send signal and data.
@@ -201,7 +203,7 @@ def async_dispatcher_send[*_Ts](
 
 
 @callback
-def async_dispatcher_send_internal[*_Ts](
+def async_dispatcher_send_internal(
     hass: HomeAssistant, signal: SignalType[*_Ts] | str, *args: *_Ts
 ) -> None:
     """Send signal and data.

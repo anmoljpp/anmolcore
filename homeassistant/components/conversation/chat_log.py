@@ -1,5 +1,7 @@
 """Conversation chat log."""
 
+from __future__ import annotations
+
 import asyncio
 from collections.abc import AsyncGenerator, AsyncIterable, Callable, Generator
 from contextlib import contextmanager
@@ -8,7 +10,7 @@ from dataclasses import asdict, dataclass, field, replace
 from datetime import datetime
 import logging
 from pathlib import Path
-from typing import Any, Literal, TypedDict, cast
+from typing import Any, Literal, TypedDict, cast, TypeAlias
 
 import voluptuous as vol
 
@@ -308,7 +310,7 @@ class ToolResultContent:
         }
 
 
-type Content = SystemContent | UserContent | AssistantContent | ToolResultContent
+Content: TypeAlias = SystemContent | UserContent | AssistantContent | ToolResultContent
 
 
 class AssistantContentDeltaDict(TypedDict, total=False):

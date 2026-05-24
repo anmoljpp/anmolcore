@@ -1,5 +1,7 @@
 """Script to run benchmarks."""
 
+from __future__ import annotations
+
 import argparse
 import asyncio
 from collections.abc import Callable
@@ -49,7 +51,7 @@ async def run_benchmark(bench):
     await hass.async_stop()
 
 
-def benchmark[_CallableT: Callable](func: _CallableT) -> _CallableT:
+def benchmark(func: _CallableT) -> _CallableT:
     """Decorate to mark a benchmark."""
     BENCHMARKS[func.__name__] = func
     return func

@@ -1,5 +1,7 @@
 """Helper to test significant Fan state changes."""
 
+from __future__ import annotations
+
 from typing import Any
 
 from homeassistant.core import HomeAssistant, callback

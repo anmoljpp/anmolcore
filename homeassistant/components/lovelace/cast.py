@@ -1,5 +1,7 @@
 """Home Assistant Cast platform."""
 
+from __future__ import annotations
+
 from typing import Any
 
 from pychromecast import Chromecast

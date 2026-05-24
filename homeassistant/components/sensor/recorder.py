@@ -1,5 +1,7 @@
 """Statistics helper for sensor."""
 
+from __future__ import annotations
+
 from collections import defaultdict
 from collections.abc import Callable, Iterable
 from contextlib import suppress
@@ -230,7 +232,7 @@ def _entity_history_to_float_and_state(
                 float_state
             ):
                 append((float_state, state))
-        except ValueError, TypeError:
+        except (ValueError, TypeError):
             pass
     return float_states
 

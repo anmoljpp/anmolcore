@@ -1,5 +1,7 @@
 """Constants for history."""
 
+from __future__ import annotations
+
 STATE_KEY = "state"
 LAST_CHANGED_KEY = "last_changed"
 

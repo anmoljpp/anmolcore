@@ -1,5 +1,7 @@
 """Models for the backup integration."""
 
+from __future__ import annotations
+
 from dataclasses import asdict, dataclass
 from enum import StrEnum
 from typing import Any, Self

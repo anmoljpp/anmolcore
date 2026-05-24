@@ -1,5 +1,7 @@
 """Module to help with parsing and generating configuration files."""
 
+from __future__ import annotations
+
 from collections import OrderedDict
 from collections.abc import Sequence
 from contextlib import suppress
@@ -661,7 +663,7 @@ class Config:
                 thepath = thepath.resolve()
             else:
                 thepath = thepath.parent.resolve()
-        except FileNotFoundError, RuntimeError, PermissionError:
+        except (FileNotFoundError, RuntimeError, PermissionError):
             return False
 
         for allowed_path in self.allowlist_external_dirs:

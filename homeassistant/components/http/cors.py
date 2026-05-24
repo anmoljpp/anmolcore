@@ -1,5 +1,7 @@
 """Provide CORS support for the HTTP component."""
 
+from __future__ import annotations
+
 from typing import Final, cast
 
 from aiohttp.hdrs import ACCEPT, AUTHORIZATION, CONTENT_TYPE, ORIGIN

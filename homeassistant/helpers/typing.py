@@ -1,23 +1,25 @@
 """Typing Helpers for Home Assistant."""
 
+from __future__ import annotations
+
 from collections.abc import Mapping
 from enum import Enum
-from typing import Any, Never
+from typing import Any, Never, TypeAlias
 
 import voluptuous as vol
 
-type GPSType = tuple[float, float]
-type ConfigType = dict[str, Any]
-type DiscoveryInfoType = dict[str, Any]
-type ServiceDataType = dict[str, Any]
-type StateType = str | int | float | None
-type TemplateVarsType = Mapping[str, Any] | None
-type NoEventData = Mapping[str, Never]
-type VolSchemaType = vol.Schema | vol.All | vol.Any
-type VolDictType = dict[str | vol.Marker, Any]
+GPSType: TypeAlias = tuple[float, float]
+ConfigType: TypeAlias = dict[str, Any]
+DiscoveryInfoType: TypeAlias = dict[str, Any]
+ServiceDataType: TypeAlias = dict[str, Any]
+StateType: TypeAlias = str | int | float | None
+TemplateVarsType: TypeAlias = Mapping[str, Any] | None
+NoEventData: TypeAlias = Mapping[str, Never]
+VolSchemaType: TypeAlias = vol.Schema | vol.All | vol.Any
+VolDictType: TypeAlias = dict[str | vol.Marker, Any]
 
 # Custom type for recorder Queries
-type QueryType = Any
+QueryType: TypeAlias = Any
 
 
 class UndefinedType(Enum):

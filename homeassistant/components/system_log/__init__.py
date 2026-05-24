@@ -1,12 +1,14 @@
 """Support for system log."""
 
+from __future__ import annotations
+
 from collections import OrderedDict, deque
 import logging
 import re
 import sys
 import traceback
 from types import FrameType
-from typing import Any, cast
+from typing import Any, cast, TypeAlias
 
 import voluptuous as vol
 
@@ -17,7 +19,7 @@ from homeassistant.core import Event, HomeAssistant, ServiceCall, callback
 from homeassistant.helpers import config_validation as cv
 from homeassistant.helpers.typing import ConfigType
 
-type KeyType = tuple[str, tuple[str, int], tuple[str, int, str] | None]
+KeyType: TypeAlias = tuple[str, tuple[str, int], tuple[str, int, str] | None]
 
 CONF_MAX_ENTRIES = "max_entries"
 CONF_FIRE_EVENT = "fire_event"

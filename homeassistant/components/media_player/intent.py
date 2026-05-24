@@ -1,5 +1,7 @@
 """Intents for the media_player integration."""
 
+from __future__ import annotations
+
 import asyncio
 from collections.abc import Iterable
 from dataclasses import dataclass, field

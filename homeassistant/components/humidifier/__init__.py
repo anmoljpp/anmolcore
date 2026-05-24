@@ -1,5 +1,7 @@
 """Provides functionality to interact with humidifier devices."""
 
+from __future__ import annotations
+
 from datetime import timedelta
 from enum import StrEnum
 import logging

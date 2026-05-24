@@ -1,5 +1,7 @@
 """Template helper functions for Home Assistant."""
 
+from __future__ import annotations
+
 from typing import TYPE_CHECKING, Any, NoReturn, overload
 
 import voluptuous as vol
@@ -74,10 +76,10 @@ def forgiving_boolean(value: Any) -> bool | object: ...
 
 
 @overload
-def forgiving_boolean[_T](value: Any, default: _T) -> bool | _T: ...
+def forgiving_boolean(value: Any, default: _T) -> bool | _T: ...
 
 
-def forgiving_boolean[_T](
+def forgiving_boolean(
     value: Any, default: _T | object = _SENTINEL
 ) -> bool | _T | object:
     """Try to convert value to a boolean."""

@@ -1,5 +1,7 @@
 """The bluetooth integration websocket apis."""
 
+from __future__ import annotations
+
 from collections.abc import Callable, Iterable
 from functools import lru_cache, partial
 import time

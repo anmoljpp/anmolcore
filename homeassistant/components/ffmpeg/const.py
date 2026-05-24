@@ -1,5 +1,7 @@
 """Support for FFmpeg."""
 
+from __future__ import annotations
+
 from homeassistant.util.signal_type import SignalType
 
 DOMAIN = "ffmpeg"

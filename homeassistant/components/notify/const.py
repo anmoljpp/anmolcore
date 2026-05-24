@@ -1,5 +1,7 @@
 """Provide common notify constants."""
 
+from __future__ import annotations
+
 import logging
 
 import voluptuous as vol

@@ -1,5 +1,7 @@
 """Provide functionality to keep track of devices."""
 
+from __future__ import annotations
+
 import asyncio
 from typing import Any
 

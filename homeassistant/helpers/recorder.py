@@ -1,5 +1,7 @@
 """Helpers to check recorder."""
 
+from __future__ import annotations
+
 import asyncio
 from collections.abc import Callable, Generator
 from contextlib import contextmanager

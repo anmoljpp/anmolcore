@@ -1,5 +1,7 @@
 """Provides conditions for locks."""
 
+from __future__ import annotations
+
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.condition import Condition, make_entity_state_condition
 

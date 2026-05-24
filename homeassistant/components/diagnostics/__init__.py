@@ -1,5 +1,7 @@
 """The Diagnostics integration."""
 
+from __future__ import annotations
+
 from collections.abc import Callable, Coroutine, Mapping
 from dataclasses import dataclass, field
 from http import HTTPStatus

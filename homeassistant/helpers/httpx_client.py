@@ -1,5 +1,7 @@
 """Helper for httpx."""
 
+from __future__ import annotations
+
 from collections.abc import Callable, Coroutine
 import sys
 from types import TracebackType

@@ -1,5 +1,7 @@
 """Ratelimit helper."""
 
+from __future__ import annotations
+
 import asyncio
 from collections.abc import Callable, Hashable
 import logging
@@ -47,7 +49,7 @@ class KeyedRateLimit:
         self._rate_limit_timers.clear()
 
     @callback
-    def async_schedule_action[*_Ts](
+    def async_schedule_action(
         self,
         key: Hashable,
         rate_limit: float | None,

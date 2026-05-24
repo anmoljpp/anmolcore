@@ -1,5 +1,7 @@
 """Selectors for Home Assistant."""
 
+from __future__ import annotations
+
 from collections.abc import Callable, Mapping, Sequence
 from copy import deepcopy
 from enum import StrEnum
@@ -49,7 +51,7 @@ def validate_selector(config: Any) -> dict:
     return {selector_type: selector_class.CONFIG_SCHEMA(config[selector_type])}
 
 
-class Selector[_T: Mapping[str, Any]]:
+class Selector(Generic[_T]):
     """Base class for selectors."""
 
     CONFIG_SCHEMA: Callable
@@ -596,7 +598,7 @@ class ChooseSelector(Selector[ChooseSelectorConfig]):
             for choice in self.config["choices"].values():
                 try:
                     validated = selector(choice["selector"])(data)  # type: ignore[operator]
-                except vol.Invalid, vol.MultipleInvalid:
+                except (vol.Invalid, vol.MultipleInvalid):
                     continue
                 else:
                     return validated

@@ -1,5 +1,7 @@
 """Rest API for Home Assistant."""
 
+from __future__ import annotations
+
 import asyncio
 from asyncio import shield, timeout
 from functools import lru_cache

@@ -1,8 +1,10 @@
 """Support for functionality to keep track of the sun."""
 
+from __future__ import annotations
+
 from datetime import datetime, timedelta
 import logging
-from typing import Any
+from typing import Any, TypeAlias
 
 from astral.location import Elevation, Location
 
@@ -29,7 +31,7 @@ from .const import (
     STATE_BELOW_HORIZON,
 )
 
-type SunConfigEntry = ConfigEntry[Sun]
+SunConfigEntry: TypeAlias = ConfigEntry[Sun]
 
 _LOGGER = logging.getLogger(__name__)
 

@@ -1,5 +1,7 @@
 """Support for recording details."""
 
+from __future__ import annotations
+
 import asyncio
 from collections.abc import Callable, Iterable
 from concurrent.futures import CancelledError
@@ -343,7 +345,7 @@ class Recorder(threading.Thread):
             self.queue_task(COMMIT_TASK)
 
     @callback
-    def async_add_executor_job[_T](
+    def async_add_executor_job(
         self, target: Callable[..., _T], *args: Any
     ) -> asyncio.Future[_T]:
         """Add an executor job from within the event loop."""

@@ -1,5 +1,7 @@
 """Constants for the Tuya integration."""
 
+from __future__ import annotations
+
 from dataclasses import dataclass, field
 from enum import StrEnum
 import logging

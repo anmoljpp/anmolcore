@@ -1,5 +1,7 @@
 """Zeroconf usage utility to warn about multiple instances."""
 
+from __future__ import annotations
+
 from typing import Any
 
 import zeroconf

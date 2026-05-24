@@ -1,5 +1,7 @@
 """Zeroconf discovery for Home Assistant."""
 
+from __future__ import annotations
+
 from collections.abc import Callable
 import contextlib
 from fnmatch import translate

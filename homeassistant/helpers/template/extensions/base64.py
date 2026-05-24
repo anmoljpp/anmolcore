@@ -1,5 +1,7 @@
 """Base64 encoding and decoding functions for Home Assistant templates."""
 
+from __future__ import annotations
+
 import base64
 from typing import TYPE_CHECKING
 

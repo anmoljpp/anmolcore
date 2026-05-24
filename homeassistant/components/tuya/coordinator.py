@@ -1,7 +1,9 @@
 """Support for Tuya Smart devices."""
 
+from __future__ import annotations
+
 from pathlib import Path
-from typing import Any
+from typing import Any, TypeAlias
 
 from tuya_device_handlers.devices import TUYA_QUIRKS_REGISTRY, register_tuya_quirks
 from tuya_sharing import (
@@ -30,7 +32,7 @@ from .const import (
 )
 from .util import get_device_info
 
-type TuyaConfigEntry = ConfigEntry[DeviceListener]
+TuyaConfigEntry: TypeAlias = ConfigEntry[DeviceListener]
 
 
 class DeviceListener(SharingDeviceListener):

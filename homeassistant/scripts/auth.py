@@ -1,5 +1,7 @@
 """Script to manage users for the Home Assistant auth provider."""
 
+from __future__ import annotations
+
 import argparse
 import asyncio
 from collections.abc import Sequence

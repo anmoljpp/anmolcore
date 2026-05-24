@@ -1,12 +1,14 @@
 """Provide an authentication layer for Home Assistant."""
 
+from __future__ import annotations
+
 import asyncio
 from collections import OrderedDict
 from collections.abc import Mapping
 from datetime import datetime, timedelta
 from functools import partial
 import time
-from typing import Any, cast
+from typing import Any, cast, TypeAlias
 
 import jwt
 
@@ -32,9 +34,9 @@ EVENT_USER_ADDED = "user_added"
 EVENT_USER_UPDATED = "user_updated"
 EVENT_USER_REMOVED = "user_removed"
 
-type _MfaModuleDict = dict[str, MultiFactorAuthModule]
-type _ProviderKey = tuple[str, str | None]
-type _ProviderDict = dict[_ProviderKey, AuthProvider]
+_MfaModuleDict: TypeAlias = dict[str, MultiFactorAuthModule]
+_ProviderKey: TypeAlias = tuple[str, str | None]
+_ProviderDict: TypeAlias = dict[_ProviderKey, AuthProvider]
 
 
 class InvalidAuthError(Exception):

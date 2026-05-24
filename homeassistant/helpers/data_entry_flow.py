@@ -1,7 +1,10 @@
 """Helpers for the data entry flow."""
 
+from __future__ import annotations
+
 from http import HTTPStatus
-from typing import Any, Generic, TypeVar
+from typing import Any, Generic
+from typing_extensions import TypeVar
 
 from aiohttp import web
 import voluptuous as vol

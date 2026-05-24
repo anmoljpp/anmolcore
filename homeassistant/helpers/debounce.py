@@ -1,5 +1,7 @@
 """Debounce helper."""
 
+from __future__ import annotations
+
 import asyncio
 from collections.abc import AsyncGenerator, Callable
 from contextlib import asynccontextmanager
@@ -9,7 +11,7 @@ from typing import Any
 from homeassistant.core import HassJob, HomeAssistant, callback
 
 
-class Debouncer[_R_co]:
+class Debouncer(Generic[_R_co]):
     """Class to rate limit calls to a specific command."""
 
     def __init__(

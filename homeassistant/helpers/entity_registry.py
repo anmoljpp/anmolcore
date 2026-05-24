@@ -8,13 +8,15 @@ registered. Registering a new entity while a timer is in progress resets the
 timer.
 """
 
+from __future__ import annotations
+
 from collections import defaultdict
 from collections.abc import Callable, Hashable, KeysView, Mapping
 from datetime import datetime, timedelta
 from enum import Enum, StrEnum
 import logging
 import time
-from typing import TYPE_CHECKING, Any, Literal, NotRequired, TypedDict
+from typing import TYPE_CHECKING, Any, Literal, NotRequired, TypedDict, TypeAlias
 
 import attr
 import voluptuous as vol
@@ -98,7 +100,7 @@ class ComputedNameType(Enum):
 
 COMPUTED_NAME = ComputedNameType._singleton  # noqa: SLF001
 
-type AliasEntry = str | ComputedNameType
+AliasEntry: TypeAlias = str | ComputedNameType
 
 
 def _serialize_aliases(aliases: list[AliasEntry]) -> list[str | None]:
@@ -157,14 +159,14 @@ class _EventEntityRegistryUpdatedData_Update(TypedDict):
     old_entity_id: NotRequired[str]
 
 
-type EventEntityRegistryUpdatedData = (
+EventEntityRegistryUpdatedData: TypeAlias = (
     _EventEntityRegistryUpdatedData_CreateRemove
     | _EventEntityRegistryUpdatedData_Update
 )
 
 
-type EntityOptionsType = Mapping[str, Mapping[str, Any]]
-type ReadOnlyEntityOptionsType = ReadOnlyDict[str, ReadOnlyDict[str, Any]]
+EntityOptionsType: TypeAlias = Mapping[str, Mapping[str, Any]]
+ReadOnlyEntityOptionsType: TypeAlias = ReadOnlyDict[str, ReadOnlyDict[str, Any]]
 
 DISPLAY_DICT_OPTIONAL = (
     # key, attr_name, convert_to_list
@@ -308,7 +310,7 @@ class RegistryEntry:
         try:
             dict_repr = self._as_display_dict
             json_repr: bytes | None = json_bytes(dict_repr) if dict_repr else None
-        except ValueError, TypeError:
+        except (ValueError, TypeError):
             _LOGGER.error(
                 "Unable to serialize entry %s to JSON. Bad data found at %s",
                 self.entity_id,
@@ -375,7 +377,7 @@ class RegistryEntry:
         try:
             dict_repr = self.as_partial_dict
             return json_bytes(dict_repr)
-        except ValueError, TypeError:
+        except (ValueError, TypeError):
             _LOGGER.error(
                 "Unable to serialize entry %s to JSON. Bad data found at %s",
                 self.entity_id,
@@ -1436,7 +1438,7 @@ class EntityRegistry(BaseRegistry):
             name = None
             options = get_initial_options() if get_initial_options else None
 
-        def none_if_undefined[_T](value: _T | UndefinedType) -> _T | None:
+        def none_if_undefined(value: _T | UndefinedType) -> _T | None:
             """Return None if value is UNDEFINED, otherwise return value."""
             return None if value is UNDEFINED else value
 
@@ -2077,7 +2079,7 @@ class EntityRegistry(BaseRegistry):
                     unit_of_measurement=entity["unit_of_measurement"],
                 )
 
-            def get_optional_enum[_EnumT: StrEnum](
+            def get_optional_enum(
                 cls: type[_EnumT], value: str | None, undefined: bool
             ) -> _EnumT | UndefinedType | None:
                 """Convert string to the passed enum, UNDEFINED or None."""
@@ -2100,7 +2102,7 @@ class EntityRegistry(BaseRegistry):
                         report_non_string_unique_id=False,
                         unique_id=entity["unique_id"],
                     )
-                except TypeError, ValueError:
+                except (TypeError, ValueError):
                     continue
                 key = (
                     split_entity_id(entity["entity_id"])[0],

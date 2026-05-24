@@ -1,5 +1,7 @@
 """HTTP specific constants."""
 
+from __future__ import annotations
+
 from typing import Final
 
 from aiohttp.web import Request

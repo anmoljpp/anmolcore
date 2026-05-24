@@ -1,5 +1,7 @@
 """Constants for the To-do integration."""
 
+from __future__ import annotations
+
 from enum import IntFlag, StrEnum
 from typing import TYPE_CHECKING
 

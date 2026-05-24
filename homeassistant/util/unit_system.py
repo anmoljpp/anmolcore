@@ -1,5 +1,7 @@
 """Unit system helper class and methods."""
 
+from __future__ import annotations
+
 from dataclasses import dataclass
 from numbers import Number
 from typing import TYPE_CHECKING, Final

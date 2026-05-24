@@ -1,9 +1,11 @@
 """Agent foundation for conversation integration."""
 
+from __future__ import annotations
+
 from collections.abc import Callable
 import dataclasses
 import logging
-from typing import TYPE_CHECKING, Any
+from typing import TYPE_CHECKING, Any, TypeAlias
 
 import voluptuous as vol
 
@@ -140,8 +142,8 @@ async def async_converse(
         return result
 
 
-type IntentSourceConfig = dict[str, dict[str, Any]]
-type IntentsCallback = Callable[[dict[IntentSource, IntentSourceConfig]], None]
+IntentSourceConfig: TypeAlias = dict[str, dict[str, Any]]
+IntentsCallback: TypeAlias = Callable[[dict[IntentSource, IntentSourceConfig]], None]
 
 
 class AgentManager:

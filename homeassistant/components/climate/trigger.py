@@ -1,5 +1,7 @@
 """Provides triggers for climates."""
 
+from __future__ import annotations
+
 import voluptuous as vol
 
 from homeassistant.const import ATTR_TEMPERATURE, CONF_OPTIONS, UnitOfTemperature

@@ -1,5 +1,7 @@
 """Helpers to help coordinate updates."""
 
+from __future__ import annotations
+
 from abc import abstractmethod
 import asyncio
 from collections.abc import Awaitable, Callable, Coroutine, Generator
@@ -8,7 +10,8 @@ from functools import partial
 import logging
 from random import randint
 from time import monotonic
-from typing import Any, Generic, Protocol, TypeVar
+from typing import Any, Generic, Protocol
+from typing_extensions import TypeVar
 import urllib.error
 
 import aiohttp
@@ -631,9 +634,12 @@ class TimestampDataUpdateCoordinator(DataUpdateCoordinator[_DataT]):
             self.last_update_success_time = utcnow()
 
 
-class BaseCoordinatorEntity[
-    _BaseDataUpdateCoordinatorT: BaseDataUpdateCoordinatorProtocol
-](entity.Entity):
+_BaseDataUpdateCoordinatorT = TypeVar(
+    "_BaseDataUpdateCoordinatorT", bound=BaseDataUpdateCoordinatorProtocol
+)
+
+
+class BaseCoordinatorEntity(entity.Entity, Generic[_BaseDataUpdateCoordinatorT]):
     """Base class for all Coordinator entities."""
 
     def __init__(
@@ -670,11 +676,14 @@ class BaseCoordinatorEntity[
         """
 
 
-class CoordinatorEntity[
-    _DataUpdateCoordinatorT: DataUpdateCoordinator[Any] = DataUpdateCoordinator[
-        dict[str, Any]
-    ]
-](BaseCoordinatorEntity[_DataUpdateCoordinatorT]):
+_DataUpdateCoordinatorT = TypeVar(
+    "_DataUpdateCoordinatorT",
+    bound=DataUpdateCoordinator[Any],
+    default=DataUpdateCoordinator[dict[str, Any]],
+)
+
+
+class CoordinatorEntity(BaseCoordinatorEntity[_DataUpdateCoordinatorT]):
     """A class for entities using DataUpdateCoordinator."""
 
     def __init__(

@@ -1,12 +1,14 @@
 """Helper for WebRTC support."""
 
+from __future__ import annotations
+
 from abc import ABC, abstractmethod
 import asyncio
 from collections.abc import Awaitable, Callable
 from dataclasses import asdict, dataclass, field
 from functools import cache, partial, wraps
 import logging
-from typing import TYPE_CHECKING, Any
+from typing import TYPE_CHECKING, Any, TypeAlias
 
 from mashumaro import MissingField
 import voluptuous as vol
@@ -89,7 +91,7 @@ class WebRTCError(WebRTCMessage):
     message: str
 
 
-type WebRTCSendMessage = Callable[[WebRTCMessage], None]
+WebRTCSendMessage: TypeAlias = Callable[[WebRTCMessage], None]
 
 
 @dataclass(kw_only=True)
@@ -191,7 +193,7 @@ async def _async_refresh_providers(hass: HomeAssistant) -> None:
     )
 
 
-type WsCommandWithCamera = Callable[
+WsCommandWithCamera: TypeAlias = Callable[
     [websocket_api.ActiveConnection, dict[str, Any], Camera],
     Awaitable[None],
 ]

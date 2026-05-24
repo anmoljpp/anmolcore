@@ -1,5 +1,7 @@
 """Helper to help store data."""
 
+from __future__ import annotations
+
 import asyncio
 from collections.abc import Callable, Iterable, Mapping, Sequence
 from contextlib import suppress
@@ -222,7 +224,7 @@ class _StoreManager:
             self._files = set(os.listdir(self._storage_path))
 
 
-class Store[_T: Mapping[str, Any] | Sequence[Any]]:
+class Store(Generic[_T]):
     """Class to help storing data."""
 
     def __init__(

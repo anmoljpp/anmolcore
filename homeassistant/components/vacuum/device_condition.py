@@ -1,5 +1,7 @@
 """Provide the device automations for Vacuum."""
 
+from __future__ import annotations
+
 import voluptuous as vol
 
 from homeassistant.const import (

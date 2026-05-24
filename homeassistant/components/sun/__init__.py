@@ -1,5 +1,7 @@
 """Support for functionality to keep track of the sun."""
 
+from __future__ import annotations
+
 import logging
 
 from homeassistant.config_entries import SOURCE_IMPORT

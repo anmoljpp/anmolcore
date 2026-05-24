@@ -1,5 +1,7 @@
 """Constants for the Valve entity platform."""
 
+from __future__ import annotations
+
 from enum import IntFlag, StrEnum
 
 DOMAIN = "valve"

@@ -1,5 +1,7 @@
 """Provide configuration end points for Scenes."""
 
+from __future__ import annotations
+
 from typing import Any
 import uuid
 

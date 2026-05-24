@@ -1,5 +1,7 @@
 """Models for Zeroconf."""
 
+from __future__ import annotations
+
 from zeroconf import Zeroconf
 from zeroconf.asyncio import AsyncZeroconf
 

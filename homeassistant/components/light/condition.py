@@ -1,5 +1,7 @@
 """Provides conditions for lights."""
 
+from __future__ import annotations
+
 from typing import Any
 
 from homeassistant.const import STATE_OFF, STATE_ON
@@ -32,7 +34,7 @@ class BrightnessCondition(EntityNumericalConditionBase):
             return None
         try:
             return (float(raw) / 255.0) * 100.0
-        except TypeError, ValueError:
+        except (TypeError, ValueError):
             return None
 
 

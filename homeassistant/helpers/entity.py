@@ -1,7 +1,9 @@
 """An abstract class for entities."""
 
+from __future__ import annotations
+
 from abc import ABCMeta
-from annotationlib import Format, get_annotations
+from homeassistant.backports.annotationlib_compat import Format, get_annotations
 import asyncio
 from collections import deque
 from collections.abc import Callable, Coroutine, Iterable, Mapping
@@ -384,7 +386,7 @@ class CachedProperties(type):
                 if attr_name in annotations:
                     annotations[private_attr_name] = annotations.pop(attr_name)
 
-                    if "__annotations__" in cls.__dict__:
+                    if "__annotations__" in cls.__dict__ or sys.version_info < (3, 14):
                         cls.__annotations__ = annotations
                     else:
 
@@ -1693,7 +1695,7 @@ class Entity(
             return f"<entity unknown.unknown={STATE_UNKNOWN}>"
         return f"<entity {self.entity_id}={self._stringify_state(self.available)}>"
 
-    async def async_request_call[_T](self, coro: Coroutine[Any, Any, _T]) -> _T:
+    async def async_request_call(self, coro: Coroutine[Any, Any, _T]) -> _T:
         """Process request batched."""
         if self.parallel_updates:
             await self.parallel_updates.acquire()

@@ -1,11 +1,13 @@
 """Offer calendar automation rules."""
 
+from __future__ import annotations
+
 import asyncio
 from collections.abc import Awaitable, Callable
 from dataclasses import dataclass
 import datetime
 import logging
-from typing import TYPE_CHECKING, Any, cast
+from typing import TYPE_CHECKING, Any, cast, TypeAlias
 
 import voluptuous as vol
 
@@ -118,8 +120,8 @@ class Timespan:
         return f"[{self.start}, {self.end})"
 
 
-type EventFetcher = Callable[[Timespan], Awaitable[list[tuple[str, CalendarEvent]]]]
-type QueuedEventFetcher = Callable[[Timespan], Awaitable[list[QueuedCalendarEvent]]]
+EventFetcher: TypeAlias = Callable[[Timespan], Awaitable[list[tuple[str, CalendarEvent]]]]
+QueuedEventFetcher: TypeAlias = Callable[[Timespan], Awaitable[list[QueuedCalendarEvent]]]
 
 
 def get_entity(hass: HomeAssistant, entity_id: str) -> CalendarEntity:

@@ -1,5 +1,7 @@
 """Constants for the Logger integration."""
 
+from __future__ import annotations
+
 import logging
 
 DOMAIN = "logger"

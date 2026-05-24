@@ -1,5 +1,7 @@
 """Helpers for working with collections."""
 
+from __future__ import annotations
+
 from collections.abc import Collection, Iterable
 from functools import partial
 from itertools import islice

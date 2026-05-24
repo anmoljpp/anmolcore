@@ -3,9 +3,11 @@
 Sending HOTP through notify service
 """
 
+from __future__ import annotations
+
 import asyncio
 import logging
-from typing import Any, cast
+from typing import Any, cast, TypeAlias
 
 import attr
 import voluptuous as vol
@@ -85,7 +87,7 @@ class NotifySetting:
     target: str | None = attr.ib(default=None)
 
 
-type _UsersDict = dict[str, NotifySetting]
+_UsersDict: TypeAlias = dict[str, NotifySetting]
 
 
 @MULTI_FACTOR_AUTH_MODULES.register("notify")

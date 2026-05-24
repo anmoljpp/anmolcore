@@ -1,5 +1,7 @@
 """Provide methods to bootstrap a Home Assistant instance."""
 
+from __future__ import annotations
+
 import asyncio
 from collections import defaultdict
 import contextlib
@@ -48,7 +50,6 @@ from .components import (
     group as group_pre_import,  # noqa: F401
     history as history_pre_import,  # noqa: F401
     http,  # not named pre_import since it has requirements
-    image_upload as image_upload_import,  # noqa: F401 - not named pre_import since it has requirements
     logbook as logbook_pre_import,  # noqa: F401
     lovelace as lovelace_pre_import,  # noqa: F401
     onboarding as onboarding_pre_import,  # noqa: F401
@@ -147,9 +148,6 @@ CORE_INTEGRATIONS = {"homeassistant", "persistent_notification"}
 
 # Integrations that are loaded right after the core is set up
 LOGGING_AND_HTTP_DEPS_INTEGRATIONS = {
-    # isal is loaded right away before `http` to ensure if its
-    # enabled, that `isal` is up to date.
-    "isal",
     # Set log levels
     "logger",
     # Ensure network config is available
@@ -158,7 +156,6 @@ LOGGING_AND_HTTP_DEPS_INTEGRATIONS = {
     "network",
     # Error logging
     "system_log",
-    "sentry",
 }
 FRONTEND_INTEGRATIONS = {
     # Get the frontend up and running as soon as possible so problem
@@ -177,19 +174,15 @@ FRONTEND_INTEGRATIONS = {
 STAGE_0_INTEGRATIONS = (
     # Load logging and http deps as soon as possible
     ("logging, http deps", LOGGING_AND_HTTP_DEPS_INTEGRATIONS, None),
-    # Setup labs for preview features
-    ("labs", {"labs"}, STAGE_0_SUBSTAGE_TIMEOUT),
     # Setup frontend
     ("frontend", FRONTEND_INTEGRATIONS, None),
     # Setup recorder
     ("recorder", {"recorder"}, None),
-    # Start up debuggers. Start these first in case they want to wait.
-    ("debugger", {"debugpy"}, STAGE_0_SUBSTAGE_TIMEOUT),
     # Zeroconf is used for mdns resolution in aiohttp client helper.
     ("zeroconf", {"zeroconf"}, STAGE_0_SUBSTAGE_TIMEOUT),
 )
 
-DISCOVERY_INTEGRATIONS = ("bluetooth", "dhcp", "ssdp", "usb")
+DISCOVERY_INTEGRATIONS = ("bluetooth", "usb")
 # Stage 1 integrations are not to be preimported in bootstrap.
 STAGE_1_INTEGRATIONS = {
     # We need to make sure discovery integrations
@@ -198,10 +191,6 @@ STAGE_1_INTEGRATIONS = {
     # been updated which leads to using an old version
     # of the dep, or worse (import errors).
     *DISCOVERY_INTEGRATIONS,
-    # To make sure we forward data to other instances
-    "mqtt_eventstream",
-    # To provide account link implementations
-    "cloud",
     # Ensure supervisor is available
     "hassio",
 }
@@ -210,16 +199,12 @@ DEFAULT_INTEGRATIONS = {
     # These integrations are set up unless recovery mode is activated.
     #
     # Integrations providing core functionality:
-    "analytics",  # Needed for onboarding
-    "application_credentials",
+    "analytics",
     "backup",
-    "brands",
     "frontend",
     "hardware",
-    "labs",
     "logger",
     "network",
-    "system_health",
     #
     # Key-feature:
     "automation",
@@ -230,40 +215,19 @@ DEFAULT_INTEGRATIONS = {
     "zone",
     #
     # Built-in helpers:
-    "counter",
     "input_boolean",
     "input_button",
     "input_datetime",
     "input_number",
     "input_select",
     "input_text",
-    "schedule",
-    "timer",
     #
     # Base platforms:
-    # Note: Calendar and todo are not included to prevent them from registering
-    # their frontend panels when there are no calendar or todo integrations.
     *(BASE_PLATFORMS - {"calendar", "todo"}),
-    #
-    # Integrations providing triggers and conditions for base platforms:
-    "air_quality",
-    "battery",
-    "door",
-    "garage_door",
-    "gate",
-    "humidity",
-    "illuminance",
-    "moisture",
-    "motion",
-    "occupancy",
-    "power",
-    "temperature",
-    "window",
 }
 DEFAULT_INTEGRATIONS_RECOVERY_MODE = {
     # These integrations are set up if recovery mode is activated.
     "backup",
-    "cloud",
     "frontend",
 }
 DEFAULT_INTEGRATIONS_SUPERVISOR = {

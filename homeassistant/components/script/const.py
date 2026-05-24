@@ -1,5 +1,7 @@
 """Constants for the script integration."""
 
+from __future__ import annotations
+
 import logging
 
 DOMAIN = "script"

@@ -1,5 +1,7 @@
 """Android Debug Bridge component constants."""
 
+from __future__ import annotations
+
 DOMAIN = "androidtv"
 
 CONF_ADB_SERVER_IP = "adb_server_ip"

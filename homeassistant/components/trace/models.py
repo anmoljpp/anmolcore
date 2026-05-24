@@ -1,9 +1,11 @@
 """Containers for a script or automation trace."""
 
+from __future__ import annotations
+
 import abc
 from collections import deque
 import datetime as dt
-from typing import Any
+from typing import Any, TypeAlias
 
 from homeassistant.core import Context
 from homeassistant.helpers.trace import (
@@ -16,7 +18,7 @@ from homeassistant.helpers.trace import (
 from homeassistant.util import dt as dt_util, uuid as uuid_util
 from homeassistant.util.limited_size_dict import LimitedSizeDict
 
-type TraceData = dict[str, LimitedSizeDict[str, BaseTrace]]
+TraceData: TypeAlias = dict[str, LimitedSizeDict[str, BaseTrace]]
 
 
 class BaseTrace(abc.ABC):

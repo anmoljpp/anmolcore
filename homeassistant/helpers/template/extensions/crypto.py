@@ -1,5 +1,7 @@
 """Cryptographic hash functions for Home Assistant templates."""
 
+from __future__ import annotations
+
 import hashlib
 from typing import TYPE_CHECKING
 

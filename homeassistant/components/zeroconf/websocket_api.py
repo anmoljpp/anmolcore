@@ -1,5 +1,7 @@
 """The zeroconf integration websocket apis."""
 
+from __future__ import annotations
+
 import asyncio
 from collections.abc import Callable
 from functools import partial

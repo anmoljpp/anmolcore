@@ -1,5 +1,7 @@
 """Component to configure Home Assistant via an API."""
 
+from __future__ import annotations
+
 from homeassistant.components import frontend
 from homeassistant.const import EVENT_COMPONENT_LOADED
 from homeassistant.core import HomeAssistant

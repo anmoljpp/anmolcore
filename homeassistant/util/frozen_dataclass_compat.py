@@ -4,7 +4,9 @@ This module enabled a non-breaking transition from mutable to frozen dataclasses
 derived from EntityDescription and sub classes thereof.
 """
 
-from annotationlib import Format, get_annotations
+from __future__ import annotations
+
+from homeassistant.backports.annotationlib_compat import Format, get_annotations
 import dataclasses
 import sys
 from typing import TYPE_CHECKING, Any, cast, dataclass_transform
@@ -97,7 +99,7 @@ class FrozenOrThawed(type):
                     continue
                 annotations |= get_annotations(parent, format=Format.FORWARDREF)
 
-            if "__annotations__" in cls.__dict__:
+            if "__annotations__" in cls.__dict__ or sys.version_info < (3, 14):
                 cls.__annotations__ = annotations
             else:
 

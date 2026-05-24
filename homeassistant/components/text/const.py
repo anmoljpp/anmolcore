@@ -1,5 +1,7 @@
 """Provides the constants needed for the component."""
 
+from __future__ import annotations
+
 DOMAIN = "text"
 
 ATTR_MAX = "max"

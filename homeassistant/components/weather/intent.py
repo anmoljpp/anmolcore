@@ -1,5 +1,7 @@
 """Intents for the weather integration."""
 
+from __future__ import annotations
+
 import voluptuous as vol
 
 from homeassistant.core import HomeAssistant, State

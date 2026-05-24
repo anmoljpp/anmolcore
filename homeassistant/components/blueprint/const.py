@@ -1,5 +1,7 @@
 """Constants for the blueprint integration."""
 
+from __future__ import annotations
+
 BLUEPRINT_FOLDER = "blueprints"
 
 CONF_BLUEPRINT = "blueprint"

@@ -1,5 +1,7 @@
 """Support for Tuya (de)humidifiers."""
 
+from __future__ import annotations
+
 from dataclasses import dataclass
 from typing import Any
 

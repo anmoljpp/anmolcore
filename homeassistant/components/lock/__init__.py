@@ -1,5 +1,7 @@
 """Component to interface with locks that can be controlled remotely."""
 
+from __future__ import annotations
+
 from datetime import timedelta
 from enum import IntFlag
 import functools as ft

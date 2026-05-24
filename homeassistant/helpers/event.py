@@ -1,5 +1,7 @@
 """Helpers for listening to events."""
 
+from __future__ import annotations
+
 import asyncio
 from collections import defaultdict
 from collections.abc import Callable, Coroutine, Iterable, Mapping, Sequence
@@ -10,7 +12,7 @@ from functools import partial, wraps
 import logging
 from random import randint
 import time
-from typing import TYPE_CHECKING, Any, Concatenate, Generic, TypeVar
+from typing import TYPE_CHECKING, Any, Concatenate, Generic, TypeVar, TypeAlias
 
 from homeassistant.const import (
     EVENT_CORE_CONFIG_UPDATE,
@@ -169,7 +171,7 @@ class TrackTemplateResult:
     result: Any
 
 
-def threaded_listener_factory[**_P](
+def threaded_listener_factory(
     async_factory: Callable[Concatenate[HomeAssistant, _P], Any],
 ) -> Callable[Concatenate[HomeAssistant, _P], CALLBACK_TYPE]:
     """Convert an async event helper to a threaded one."""
@@ -332,7 +334,7 @@ def async_track_state_change_event(
 
 
 @callback
-def _async_dispatch_entity_id_event_soon[_StateEventDataT: EventStateEventData](
+def _async_dispatch_entity_id_event_soon(
     hass: HomeAssistant,
     callbacks: dict[str, list[HassJob[[Event[_StateEventDataT]], Any]]],
     event: Event[_StateEventDataT],
@@ -342,7 +344,7 @@ def _async_dispatch_entity_id_event_soon[_StateEventDataT: EventStateEventData](
 
 
 @callback
-def _async_dispatch_entity_id_event[_StateEventDataT: EventStateEventData](
+def _async_dispatch_entity_id_event(
     hass: HomeAssistant,
     callbacks: dict[str, list[HassJob[[Event[_StateEventDataT]], Any]]],
     event: Event[_StateEventDataT],
@@ -362,7 +364,7 @@ def _async_dispatch_entity_id_event[_StateEventDataT: EventStateEventData](
 
 
 @callback
-def _async_state_filter[_StateEventDataT: EventStateEventData](
+def _async_state_filter(
     hass: HomeAssistant,
     callbacks: dict[str, list[HassJob[[Event[_StateEventDataT]], Any]]],
     event_data: _StateEventDataT,
@@ -1299,7 +1301,7 @@ class TrackTemplateResultInfo:
         self.hass.async_run_hass_job(self._job, event, updates)
 
 
-type TrackTemplateResultListener = Callable[
+TrackTemplateResultListener: TypeAlias = Callable[
     [
         Event[EventStateChangedData] | None,
         list[TrackTemplateResult],

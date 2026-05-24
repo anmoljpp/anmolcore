@@ -1,5 +1,7 @@
 """Provides device triggers for switches."""
 
+from __future__ import annotations
+
 import voluptuous as vol
 
 from homeassistant.components.device_automation import toggle_entity

@@ -1,12 +1,14 @@
 """The Energy websocket API."""
 
+from __future__ import annotations
+
 import asyncio
 from collections import defaultdict
 from collections.abc import Callable, Coroutine
 from datetime import timedelta
 import functools
 from itertools import chain
-from typing import Any, cast
+from typing import Any, cast, TypeAlias
 
 import voluptuous as vol
 
@@ -31,11 +33,11 @@ from .data import (
 from .types import EnergyPlatform, GetSolarForecastType, SolarForecastType
 from .validate import async_validate
 
-type EnergyWebSocketCommandHandler = Callable[
+EnergyWebSocketCommandHandler: TypeAlias = Callable[
     [HomeAssistant, websocket_api.ActiveConnection, dict[str, Any], EnergyManager],
     None,
 ]
-type AsyncEnergyWebSocketCommandHandler = Callable[
+AsyncEnergyWebSocketCommandHandler: TypeAlias = Callable[
     [HomeAssistant, websocket_api.ActiveConnection, dict[str, Any], EnergyManager],
     Coroutine[Any, Any, None],
 ]

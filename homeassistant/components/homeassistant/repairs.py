@@ -1,5 +1,7 @@
 """Repairs for Home Assistant."""
 
+from __future__ import annotations
+
 from homeassistant.components.repairs import (
     ConfirmRepairFlow,
     RepairsFlow,

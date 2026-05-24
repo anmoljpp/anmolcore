@@ -1,5 +1,7 @@
 """Provides useful helpers for handling devices."""
 
+from __future__ import annotations
+
 from homeassistant.core import HomeAssistant, callback
 
 from . import device_registry as dr, entity_registry as er

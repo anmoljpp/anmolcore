@@ -1,5 +1,7 @@
 """Provides device automations for Media player."""
 
+from __future__ import annotations
+
 import voluptuous as vol
 
 from homeassistant.const import (

@@ -1,5 +1,7 @@
 """Lovelace dashboard support."""
 
+from __future__ import annotations
+
 from abc import ABC, abstractmethod
 import logging
 import os

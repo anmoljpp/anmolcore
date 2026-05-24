@@ -1,5 +1,7 @@
 """Backup onboarding views."""
 
+from __future__ import annotations
+
 from collections.abc import Callable, Coroutine
 from functools import wraps
 from http import HTTPStatus
@@ -38,7 +40,7 @@ async def async_setup_views(hass: HomeAssistant, data: OnboardingStoreData) -> N
     hass.http.register_view(UploadBackupView(data))
 
 
-def with_backup_manager[_ViewT: BaseOnboardingView, **_P](
+def with_backup_manager(
     func: Callable[
         Concatenate[_ViewT, BackupManager, web.Request, _P],
         Coroutine[Any, Any, web.Response],

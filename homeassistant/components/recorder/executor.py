@@ -1,5 +1,7 @@
 """Database executor helpers."""
 
+from __future__ import annotations
+
 from collections.abc import Callable
 from concurrent.futures.thread import _threads_queues, _worker
 import threading

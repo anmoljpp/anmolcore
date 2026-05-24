@@ -1,9 +1,11 @@
 """Provide a base implementation for registries."""
 
+from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from collections import UserDict, defaultdict
 from collections.abc import Mapping, Sequence, ValuesView
-from typing import TYPE_CHECKING, Any, Literal
+from typing import TYPE_CHECKING, Any, Literal, TypeAlias
 
 from homeassistant.core import CoreState, HomeAssistant, callback
 
@@ -13,10 +15,10 @@ if TYPE_CHECKING:
 SAVE_DELAY = 10
 SAVE_DELAY_LONG = 180
 
-type RegistryIndexType = defaultdict[str, dict[str, Literal[True]]]
+RegistryIndexType: TypeAlias = defaultdict[str, dict[str, Literal[True]]]
 
 
-class BaseRegistryItems[_DataT](UserDict[str, _DataT], ABC):
+class BaseRegistryItems(UserDict[str, _DataT], ABC):
     """Base class for registry items."""
 
     data: dict[str, _DataT]
@@ -61,7 +63,7 @@ class BaseRegistryItems[_DataT](UserDict[str, _DataT], ABC):
         super().__delitem__(key)
 
 
-class BaseRegistry[_StoreDataT: Mapping[str, Any] | Sequence[Any]](ABC):
+class BaseRegistry(ABC):
     """Class to implement a registry."""
 
     hass: HomeAssistant

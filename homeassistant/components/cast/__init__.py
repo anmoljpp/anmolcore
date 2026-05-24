@@ -1,7 +1,9 @@
 """Component to embed Google Cast."""
 
+from __future__ import annotations
+
 from dataclasses import dataclass, field
-from typing import Protocol
+from typing import Protocol, TypeAlias
 from uuid import UUID
 
 from pychromecast import Chromecast
@@ -23,7 +25,7 @@ from .const import DOMAIN
 
 PLATFORMS = [Platform.MEDIA_PLAYER]
 
-type CastConfigEntry = ConfigEntry[CastRuntimeData]
+CastConfigEntry: TypeAlias = ConfigEntry[CastRuntimeData]
 
 
 @dataclass

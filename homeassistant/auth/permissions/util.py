@@ -1,15 +1,17 @@
 """Helpers to deal with permissions."""
 
+from __future__ import annotations
+
 from collections.abc import Callable
 from functools import wraps
-from typing import cast
+from typing import cast, TypeAlias
 
 from .const import SUBCAT_ALL
 from .models import PermissionLookup
 from .types import CategoryType, SubCategoryDict, ValueType
 
-type LookupFunc = Callable[[PermissionLookup, SubCategoryDict, str], ValueType | None]
-type SubCatLookupType = dict[str, LookupFunc]
+LookupFunc: TypeAlias = Callable[[PermissionLookup, SubCategoryDict, str], ValueType | None]
+SubCatLookupType: TypeAlias = dict[str, LookupFunc]
 
 
 def lookup_all(

@@ -1,5 +1,7 @@
 """Support to select a date and/or a time."""
 
+from __future__ import annotations
+
 import datetime as py_datetime
 import logging
 from typing import Any, Self

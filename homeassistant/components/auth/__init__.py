@@ -123,12 +123,14 @@ that link accounts with other cloud providers using LocalOAuth2Implementation
 as part of a config flow.
 """
 
+from __future__ import annotations
+
 import asyncio
 from collections.abc import Callable
 from datetime import datetime, timedelta
 from http import HTTPStatus
 from logging import getLogger
-from typing import Any, cast
+from typing import Any, cast, TypeAlias
 import uuid
 
 from aiohttp import web
@@ -162,8 +164,8 @@ from . import indieauth, login_flow, mfa_setup_flow
 
 DOMAIN = "auth"
 
-type StoreResultType = Callable[[str, Credentials], str]
-type RetrieveResultType = Callable[[str, str], Credentials | None]
+StoreResultType: TypeAlias = Callable[[str, Credentials], str]
+RetrieveResultType: TypeAlias = Callable[[str, str], Credentials | None]
 DATA_STORE: HassKey[StoreResultType] = HassKey(DOMAIN)
 CONFIG_SCHEMA = cv.empty_config_schema(DOMAIN)
 

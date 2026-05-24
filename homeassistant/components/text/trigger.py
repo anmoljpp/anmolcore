@@ -1,5 +1,7 @@
 """Provides triggers for text and input_text entities."""
 
+from __future__ import annotations
+
 from homeassistant.components.input_text import DOMAIN as INPUT_TEXT_DOMAIN
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.automation import DomainSpec

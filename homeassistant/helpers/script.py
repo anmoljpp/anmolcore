@@ -1,5 +1,7 @@
 """Helpers to execute scripts."""
 
+from __future__ import annotations
+
 import asyncio
 from collections.abc import AsyncGenerator, Callable, Mapping, Sequence
 from contextlib import asynccontextmanager
@@ -10,7 +12,7 @@ from datetime import datetime, timedelta
 from functools import partial
 import itertools
 import logging
-from typing import Any, Literal, TypedDict, cast, overload
+from typing import Any, Literal, TypedDict, cast, overload, TypeAlias
 
 import async_interrupt
 from propcache.api import cached_property
@@ -628,7 +630,7 @@ class _ScriptRun:
             level=level,
         )
 
-    async def _async_run_long_action[_T](
+    async def _async_run_long_action(
         self, long_task: asyncio.Task[_T]
     ) -> _T | None:
         """Run a long task while monitoring for stop request."""
@@ -1402,7 +1404,7 @@ async def _async_stop_scripts_at_shutdown(hass: HomeAssistant, event: Event) -> 
         )
 
 
-type _VarsType = dict[str, Any] | Mapping[str, Any] | ScriptRunVariables
+_VarsType: TypeAlias = dict[str, Any] | Mapping[str, Any] | ScriptRunVariables
 
 
 def _referenced_extract_ids(data: Any, key: str, found: set[str]) -> None:

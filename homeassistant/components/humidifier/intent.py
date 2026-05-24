@@ -1,5 +1,7 @@
 """Intents for the humidifier integration."""
 
+from __future__ import annotations
+
 import voluptuous as vol
 
 from homeassistant.const import ATTR_ENTITY_ID, ATTR_MODE, STATE_OFF

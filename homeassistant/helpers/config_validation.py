@@ -1,5 +1,7 @@
 """Helpers for config validation using voluptuous."""
 
+from __future__ import annotations
+
 from collections.abc import Callable, Hashable, Mapping
 import contextlib
 from contextvars import ContextVar
@@ -19,7 +21,7 @@ from socket import (  # type: ignore[attr-defined]  # private, not in typeshed
     _GLOBAL_DEFAULT_TIMEOUT,
 )
 import threading
-from typing import TYPE_CHECKING, Any, cast, overload
+from typing import TYPE_CHECKING, Any, cast, overload, TypeAlias
 from urllib.parse import urlparse
 from uuid import UUID
 
@@ -147,7 +149,7 @@ _validating_async: ContextVar[bool] = ContextVar("_validating_async", default=Fa
 """Set to True when doing async friendly schema validation."""
 
 
-def not_async_friendly[**_P, _R](validator: Callable[_P, _R]) -> Callable[_P, _R]:
+def not_async_friendly(validator: Callable[_P, _R]) -> Callable[_P, _R]:
     """Mark a validator as not async friendly.
 
     This makes validation happen in an executor thread if validation is done by
@@ -343,14 +345,14 @@ def ensure_list(value: None) -> list[Any]: ...
 
 
 @overload
-def ensure_list[_T](value: list[_T]) -> list[_T]: ...
+def ensure_list(value: list[_T]) -> list[_T]: ...
 
 
 @overload
-def ensure_list[_T](value: list[_T] | _T) -> list[_T]: ...
+def ensure_list(value: list[_T] | _T) -> list[_T]: ...
 
 
-def ensure_list[_T](value: _T | None) -> list[_T] | list[Any]:
+def ensure_list(value: _T | None) -> list[_T] | list[Any]:
     """Wrap value in list if it is not one."""
     if value is None:
         return []
@@ -612,7 +614,7 @@ def time_period_seconds(value: float | str) -> timedelta:
 time_period = vol.Any(time_period_str, time_period_seconds, timedelta, time_period_dict)
 
 
-def match_all[_T](value: _T) -> _T:
+def match_all(value: _T) -> _T:
     """Validate that matches all values."""
     return value
 
@@ -628,7 +630,7 @@ positive_time_period_dict = vol.All(time_period_dict, positive_timedelta)
 positive_time_period = vol.All(time_period, positive_timedelta)
 
 
-def remove_falsy[_T](value: list[_T]) -> list[_T]:
+def remove_falsy(value: list[_T]) -> list[_T]:
     """Remove falsy values from a list."""
     return [v for v in value if v]
 
@@ -1089,7 +1091,7 @@ def renamed(
     return validator
 
 
-type ValueSchemas = dict[Hashable, VolSchemaType | Callable[[Any], dict[str, Any]]]
+ValueSchemas: TypeAlias = dict[Hashable, VolSchemaType | Callable[[Any], dict[str, Any]]]
 
 
 def key_value_schemas(
@@ -1143,7 +1145,7 @@ def key_value_schemas(
 # Validator helpers
 
 
-def key_dependency[_KT: Hashable, _VT](
+def key_dependency(
     key: Hashable, dependency: Hashable
 ) -> Callable[[dict[_KT, _VT]], dict[_KT, _VT]]:
     """Validate that all dependencies exist for key."""

@@ -1,5 +1,7 @@
 """Provides triggers for todo platform."""
 
+from __future__ import annotations
+
 import abc
 import asyncio
 from collections.abc import Callable

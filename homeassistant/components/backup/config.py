@@ -1,5 +1,7 @@
 """Provide persistent configuration for the backup integration."""
 
+from __future__ import annotations
+
 from collections import defaultdict
 from dataclasses import dataclass, field, replace
 import datetime as dt

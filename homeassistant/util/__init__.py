@@ -1,5 +1,7 @@
 """Helper methods for various modules."""
 
+from __future__ import annotations
+
 from collections.abc import Callable, Coroutine, Iterable, KeysView, Mapping
 from datetime import datetime, timedelta
 from functools import wraps
@@ -56,13 +58,13 @@ def repr_helper(inp: Any) -> str:
     return str(inp)
 
 
-def convert[_T, _U](
+def convert(
     value: _T | None, to_type: Callable[[_T], _U], default: _U | None = None
 ) -> _U | None:
     """Convert value to to_type, returns default if fails."""
     try:
         return default if value is None else to_type(value)
-    except ValueError, TypeError:
+    except (ValueError, TypeError):
         # If value could not be converted
         return default
 

@@ -1,5 +1,7 @@
 """The exceptions used by Home Assistant."""
 
+from __future__ import annotations
+
 from collections.abc import Callable, Generator, Sequence
 from typing import TYPE_CHECKING, Any
 
