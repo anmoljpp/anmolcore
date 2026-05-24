@@ -191,18 +191,14 @@ STAGE_1_INTEGRATIONS = {
     # been updated which leads to using an old version
     # of the dep, or worse (import errors).
     *DISCOVERY_INTEGRATIONS,
-    # Ensure supervisor is available
-    "hassio",
 }
 
 DEFAULT_INTEGRATIONS = {
     # These integrations are set up unless recovery mode is activated.
     #
     # Integrations providing core functionality:
-    "analytics",
     "backup",
     "frontend",
-    "hardware",
     "logger",
     "network",
     #

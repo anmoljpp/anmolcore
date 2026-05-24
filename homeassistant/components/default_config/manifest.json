@@ -5,10 +5,7 @@
     "@home-assistant/core"
   ],
   "dependencies": [
-    "assist_pipeline",
     "bluetooth",
-    "conversation",
-    "energy",
     "history",
     "logbook",
     "sun",

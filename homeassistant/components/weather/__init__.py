@@ -15,10 +15,10 @@ from typing import (
     Literal,
     Required,
     TypedDict,
-    TypeVar,
     cast,
     final,
 )
+from typing_extensions import TypeVar
 
 from propcache.api import cached_property
 import voluptuous as vol
